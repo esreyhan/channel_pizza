@@ -13,10 +13,20 @@ public class Order {
 	
 	@Id
 	private String id;
-	private List<String> itemids;
+	private List<String> orderitems;
+	private List<Integer> quantity;
 	private double total;
 	private String date;
+	private String userid;
 	
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	private Order() {
 		LocalDateTime myDateObj = LocalDateTime.now();
@@ -39,23 +49,29 @@ public class Order {
 		this.id = id;}
 	
 	
-
-	
-	public List<String> getItemids() {
-		return itemids;
-	}
-	public void setItemids(List<String> itemids) {
-		this.itemids = itemids;
-	}
 	public double getTotal() {
 		return total;
 	}
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public List<String> getOrderitems() {
+		return orderitems;
+	}
+
+	public void setOrderitems(List<String> orderitems) {
+		this.orderitems = orderitems;
+	}
+
+	public List<Integer> getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(List<Integer> quantity) {
+		this.quantity = quantity;
 	} 
 	
-	public void addItem(String item) {
-		itemids.add(item);
-	}
+
 
 }
