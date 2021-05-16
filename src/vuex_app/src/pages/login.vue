@@ -67,6 +67,8 @@ import {mapState} from 'vuex'
         async submit(){ 
          await this.signIn(this.form).then(() =>{
           this.redirect()
+         }).catch(error => {
+           console.log(error)
          })
            
 

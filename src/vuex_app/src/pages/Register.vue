@@ -56,7 +56,7 @@
                         
                     </div>
 
-                    <button type="button" class="btnSubmit" @click="userCheck()">Submit</button>
+                    <button type="button" class="btn btn-primary" @click="userCheck()" style="margin-top:6px">Submit</button>
                 </div>
                 </form>
             </div>
@@ -82,18 +82,13 @@ export default {components: {
         return {
 
         code: '',
-        postcodes: [],
         postcode:'',
         region:'',
         country:'',
         countries:[],
-        filteredCountry:'',
-        dataCountry:'',
         sample: [],
         countryData:[],
         regionData:[],
-        dataFields_country:{value:'country'},
-        dataFields_region:{value:'region'},
         adress_line:'',
         firstname:'',
         lastname:'',
@@ -104,8 +99,7 @@ export default {components: {
           address:null,
           fullname:null
           
-        },
-        simpleDialog : false
+        }
 
         }
        
@@ -130,9 +124,6 @@ export default {components: {
         
         this.countryData.push(this.postcodes[0].country);
         this.regionData.push(this.postcodes[0].region)
-        //this.countryData.push(this.postcodes[0].admin_county)
-        //this.countryData.push(this.postcodes[0].admin_district)
-        //this.countryData.push(this.postcodes[0].admin_ward)
       }).catch(error=>{
        console.log(error)
  })
@@ -191,7 +182,7 @@ export default {components: {
              this.showSuccessAlert()
                 
             }).catch(error => {
-                console.log("catch" + error.message)
+                console.log(error)
             }) } 
             
               
@@ -204,15 +195,5 @@ export default {components: {
 </script>
 
 <style>
-/*
-.v-dialog--custom {
-  width: 10%;
-}
-/* Desktop */
-/*
-@media screen and (min-width: 768px) {
-  .v-dialog--custom {
-    width: 50%;
-  }
-}*/
+
 </style>
