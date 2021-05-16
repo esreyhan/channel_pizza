@@ -13,6 +13,7 @@ public class User {
 	@Indexed(unique=true)
 	private String username;
 	private String password;
+	private String fullname;
 	private String email;
 	private String address;
 	
@@ -46,6 +47,12 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 	
 		
