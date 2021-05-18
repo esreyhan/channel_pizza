@@ -4,10 +4,12 @@
         <div class="col-md cart">
             <div class="title">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-4">
                         <h4><b>Shopping Cart</b></h4>
                     </div>
-                    <div class="col align-self-center text-right text-muted"> </div>
+                    <div class="col-6 align-self-center text-right text-muted">  </div>
+                    <div  @mouseover="hover = true" @click="clear()" id="hover" class="col-2 align-self-center text-right text-muted"> Clear Basket </div>
+                    
                 </div>
             </div>
 
@@ -49,6 +51,7 @@ export default {
      
       data () {
           return {
+              hover: false,
         order:{
           oderitems:[],
           quantity:[],
@@ -77,6 +80,7 @@ export default {
     methods :{ 
         ...mapActions({
            regOrder: 'addOrder',
+           clear: 'cartClear'
         }),
         redirect() {
              
@@ -85,6 +89,9 @@ export default {
               }) 
             
         },
+
+       
+        
          showAlert() {
     const options = {title: 'Sign In Required', size: 'sm'}
     this.$dialogs.alert('Please sign in or register to proceed to the checkout', options)
@@ -141,6 +148,9 @@ body {
 
 .title {
     margin-bottom: 5vh
+}
+#hover:hover {
+text-decoration: underline;
 }
 
 .card {

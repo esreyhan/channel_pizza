@@ -12,8 +12,7 @@ import Product from "./pages/Product.vue"
 import ProductList from "./pages/ProductList.vue"
 import ConfirmationPage from "./pages/Orderconfirmation.vue"
 import Register from './pages/Register.vue'
-
-import store from "./store";
+import store from "./store"
 import Login from "./pages/login.vue"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -25,6 +24,8 @@ import SlimDialog from 'v-slim-dialog'
 Vue.use(SlimDialog)
 Vue.use(VueSimpleAlert);
 
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
+Vue.component('vue-bootstrap-typeahead', VueBootstrapTypeahead)
 
 Vue.use(VueAxios,axios)
 Vue.use(BootstrapVue)

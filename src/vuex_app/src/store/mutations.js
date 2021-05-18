@@ -21,3 +21,7 @@ export const SET_ORDER = (state,order) => {
     state.order = order
 }
 
+export const CART_CLEAR = (state) => {
+    state.cart= []
+}
+

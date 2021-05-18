@@ -25,7 +25,7 @@
     <span style = "margin-left:20px" class="nav-item nav-link" active-class="active" exact v-if="authenticated">
     {{user}}
     </span>
-    <a style = "margin-left:20px" v-if="authenticated" href="#" class="nav-item nav-link" active-class="active" exact @click="logout()"> Log Out </a>
+    <a style = "margin-left:20px" v-if="authenticated" id="logOut" href="#" class="nav-item nav-link" active-class="active" exact @click="logout()"> Log Out </a>
     
   <template v-else>
   <router-link style = "margin-left:20px" :to="{name:'Login'}" class="nav-item nav-link" active-class="active" exact> Sign-in </router-link>

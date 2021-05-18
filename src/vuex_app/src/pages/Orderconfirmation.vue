@@ -13,7 +13,7 @@
 
             <div v-for="item in cart" :key="item.product.id" class="row border-top border-bottom">
                 <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" :src="item.product.image"></div>
+                    <div class="col-2"><img class="img-fluid" :src="require('../assets/' + item.product.image)"></div>
                     <div class="col">
                         <div class="row text-muted">{{item.product.title}}</div>
                     </div>

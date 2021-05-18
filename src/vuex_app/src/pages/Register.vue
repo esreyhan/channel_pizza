@@ -69,11 +69,10 @@
 import axios from 'axios'
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
-import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
-export default {components: {
+export default  {/*components: {
         VueBootstrapTypeahead
         
-    },
+    },*/
 
     
 
@@ -82,18 +81,12 @@ export default {components: {
         return {
 
         code: '',
-        postcodes: [],
-        postcode:'',
         region:'',
         country:'',
-        countries:[],
-        filteredCountry:'',
-        dataCountry:'',
+        postcodes:[],
         sample: [],
         countryData:[],
         regionData:[],
-        dataFields_country:{value:'country'},
-        dataFields_region:{value:'region'},
         adress_line:'',
         firstname:'',
         lastname:'',
@@ -169,12 +162,13 @@ export default {components: {
        if(!!this.adress_line &&!!this.firstname && !!this.form.username && !!this.form.password&&!!this.lastname&&!!this.code &&!!this.country &&!!this.region) {
         await axios.get("http://localhost:8080/api/messages/findUserByUsername/" + this.form.username).then((response)=>{
         if(response.data) {
-            this.showAlert2();
-            console.log(response)
+            this.showAlert2()
             
         } else {
             this.submit()
         }
+       }).catch(error => {
+           console.log(error)
        }) }else {
         this.showAlert()
        }
