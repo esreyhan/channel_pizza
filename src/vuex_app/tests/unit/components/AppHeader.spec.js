@@ -21,7 +21,7 @@ describe('Appheader.vue', () => {
                 }, 
                 getters : {
                     authenticated: () => ({}),
-                    'auth/authenticated': false,
+                    'auth/authenticated': null,
                     user: () => ({}),
                     'auth/user': null
 
@@ -44,7 +44,7 @@ describe('Appheader.vue', () => {
             }, 
             getters : {
                 authenticated: () => ({}),
-                'auth/authenticated': true,
+                'auth/authenticated': "ab2",
                 user: () => ({}),
                 'auth/user': user
 
@@ -68,7 +68,7 @@ describe('Appheader.vue', () => {
             }, 
             getters : {
                 authenticated: () => ({}),
-                'auth/authenticated': false,
+                'auth/authenticated': null,
                 user: () => ({}),
                 'auth/user': null
 

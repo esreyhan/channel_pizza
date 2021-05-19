@@ -36,25 +36,18 @@ export default {
         async signIn ({commit}, credentials) {
 
             let response = await axios.post('http://localhost:8080/api/messages/user', credentials)
+            
             if (response.data != null){
                 commit('SET_USER',response.data.username)
                 commit('SET_ID',response.data.id)
-            } else {
-                commit('SET_ID',null),
-                commit('SET_USER',null)
-
-            }
+            } 
             },  
         async register ({commit}, information) {
             let response = await axios.post('http://localhost:8080/api/messages/addUser', information)
             if (response.data != null){
                 commit('SET_USER',response.data.username)
                 commit('SET_ID',response.data.id)
-            } else {
-                commit('SET_ID',null),
-                commit('SET_USER',null)
-
-            }
+            } 
         
         },
 

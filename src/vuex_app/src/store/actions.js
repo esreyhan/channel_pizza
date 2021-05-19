@@ -8,7 +8,7 @@ await axios.get('http://localhost:8080/api/messages/findAllItems')
 }
 
 export const getProduct = async function ({commit}, productId ) {
-axios.get('http://localhost:8080/api/messages/findItemById/'+ productId).then(response => {
+await axios.get('http://localhost:8080/api/messages/findItemById/'+ productId).then(response => {
     commit('SET_PRODUCT',response.data);
 })
 }
@@ -18,8 +18,8 @@ export const addProductToCart = function({commit}, {product, quantity}) {
 
 }
 
-export const addOrder= function({commit}, cartinfo ) {
-    axios.post('http://localhost:8080/api/messages/addOrder',cartinfo).then(response => {   
+export const addOrder= async function({commit}, cartinfo ) {
+    await axios.post('http://localhost:8080/api/messages/addOrder',cartinfo).then(response => {   
     commit('SET_ORDER',response.data);
     }).catch((error) =>{console.log(error)})
     };

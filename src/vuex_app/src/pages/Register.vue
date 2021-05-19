@@ -36,7 +36,7 @@
                     <div class="note"> Adress Information </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input autocomplete = "off" v-model="code" type="text" class="form-control" placeholder="Post Code *" @blur="postCodeSearch"/>
+                                <input id="postcode_input" autocomplete = "off" v-model="code" type="text" class="form-control" placeholder="Post Code *" @blur="postCodeSearch"/>
                             </div>
                             <div class="form-group" style="margin:10% 25">
                                 <vue-bootstrap-typeahead placeholder="Country" v-model="country" :data='countryData'/>
@@ -119,6 +119,7 @@ export default  {/*components: {
       .then(response => {
         
         this.postcodes[0] = response.data.result;
+        console.log(response.data);
         this.sample = this.postcodes;
         
         this.countryData.push(this.postcodes[0].country);
