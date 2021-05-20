@@ -8,8 +8,7 @@ import auth from '@/store/auth'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 const store = new Vuex.Store()
-localVue.use(VueRouter)
-const router = new VueRouter()
+
 
 
 describe('Appheader.vue', () => {
@@ -60,7 +59,7 @@ describe('Appheader.vue', () => {
     expect(wrapper.html()).toContain(user&'logout')
     }
     );
-    test('renders the username and logout tab', () =>{
+    test('renders the login and register tabs', () =>{
         const user = 'user'
         const $store = {
             state:{
@@ -122,7 +121,7 @@ describe('Appheader.vue', () => {
         beforeEach(() => {
             state = {
               cart: [],
-              authenticated:true,
+              authenticated:'ab2',
               user:'user'
             }
     

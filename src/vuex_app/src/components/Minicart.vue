@@ -39,7 +39,7 @@
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right"> $ {{total}}</div>
-            </div> <router-link :to="{name:'ProductList'}"> <button class="btn">CONTINUE SHOPPING</button> </router-link> <button class="btn"  @click="checkOut()">CHECKOUT</button> 
+            </div> <router-link :to="{name:'ProductList'}"> <button class="btn">CONTINUE SHOPPING</button> </router-link> <button id="btcheckout" class="btn"  @click="checkOut()">CHECKOUT</button> 
         </div>
     </div>
 </template>
@@ -72,8 +72,7 @@ export default {
     },
     ...mapState({
         userid: state => state.auth.id,
-        cart: state => state.cart,
-        orderstatus:state => state.order
+        cart: state => state.cart
       
       })
     },

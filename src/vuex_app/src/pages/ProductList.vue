@@ -6,7 +6,7 @@
 <div v-if = "product.type==='italian'">
 
 
- <ProductCard v-bind:product="product"/> 
+ <ProductCard class="productcard" id="pr_i" v-bind:product="product"/> 
 </div>
 </div>
 </div>
@@ -16,7 +16,7 @@
 <div v-for="product in products" :key="product.id">
 <div v-if = "product.type==='local'">
 
- <ProductCard v-bind:product="product"/> 
+ <ProductCard class="productcard" id="pr_l" v-bind:product="product"/> 
 </div>
 </div>
 </div>
@@ -26,7 +26,7 @@
 <div v-for="product in products" :key="product.id">
 <div v-if = "product.type==='beverage'">
 
- <ProductCard v-bind:product="product"/> 
+ <ProductCard class="productcard" id="pr_b" v-bind:product="product"/> 
 </div>
 </div>
 </div>
@@ -46,13 +46,13 @@ export default {
             return this.$store.state.products;
 
         },
+        mounted() {
+    return this.$store.dispatch('getProducts')
+},
         
     },
     
     
-    mounted (){
-        this.$store.dispatch('getProducts');
-
-    }
+  
 }
 </script>

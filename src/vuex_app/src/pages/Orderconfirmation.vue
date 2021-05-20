@@ -41,9 +41,7 @@ export default {
    
     computed: { cart() {
           return this.$store.state.cart;
-      }, cartItemCount() {
-      return this.$store.getters.cartItemCount;
-    },
+      }, 
     total () {
         return this.$store.getters.total
     }
