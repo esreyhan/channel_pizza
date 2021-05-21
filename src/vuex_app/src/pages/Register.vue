@@ -112,16 +112,15 @@ export default  {/*components: {
     methods: {
     
     postCodeSearch: function() {
-        console.log(this.code)
+       
    const url = "https://api.postcodes.io/postcodes/" + this.code
-   console.log(url)
+  
       axios
       .get(url)
       .then(response => {
         
         this.postcodes[0] = response.data.result;
-        console.log(response.data);
-        console.log(this.postcodes)
+        
         this.countryData.push(this.postcodes[0].country);
         this.regionData.push(this.postcodes[0].region)
         //this.countryData.push(this.postcodes[0].admin_county)
@@ -160,14 +159,14 @@ export default  {/*components: {
                 })
   },
   async userCheck () {
-      console.log("address" + this.code)
+      
        if(!!this.adress_line &&!!this.firstname && !!this.form.username && !!this.form.password&&!!this.lastname&&!!this.code &&!!this.country &&!!this.region) {
-        console.log("inside the if clause")
+        
         await axios.get("http://localhost:8080/api/messages/findUserByUsername/" + this.form.username).then((response)=>{
-       console.log("Response data" + response)
+      
        if(response.data) {
             this.showAlert2()
-            console.log('alert 2 inside')
+         
             
         } else {
             this.submit();
@@ -188,7 +187,6 @@ export default  {/*components: {
          await this.register(this.form).then(() => {
              
              this.showSuccessAlert();
-             console.log("register function called ---------------------------------")
                 
             }).catch(error => {
                 console.log("catch" + error.message)

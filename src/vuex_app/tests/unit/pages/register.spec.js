@@ -35,7 +35,7 @@ jest.mock('axios',() => ({
         }
 },*/
     get: (_url) =>{
-        console.log("url :" +_url);
+       
         switch (_url) {
             
             case 'https://api.postcodes.io/postcodes/abc':

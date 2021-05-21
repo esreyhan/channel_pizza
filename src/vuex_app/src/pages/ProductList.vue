@@ -41,14 +41,15 @@ export default {
     components: {
        ProductCard
     }, 
+    mounted() {
+    this.$store.dispatch('getProducts')
+},
     computed : {
         products () {
             return this.$store.state.products;
 
         },
-        mounted() {
-    return this.$store.dispatch('getProducts')
-},
+        
         
     },
     
