@@ -13,7 +13,6 @@ const store = new Vuex.Store()
 
 describe('Actions', () => {
     const redirect_mock = jest.fn()
-            //const submit_mock = jest.fn()
             const signIn_mock = async () => { return new Promise((response) => {
                 const mock_data={data:{"username":"ab"}}
                 response(mock_data);
