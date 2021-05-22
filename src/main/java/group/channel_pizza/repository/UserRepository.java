@@ -6,11 +6,9 @@ import channelpizza.model.User;
 
 
 
-public interface UserRepository  extends MongoRepository<User,Integer>{
+public interface UserRepository  extends MongoRepository<User,String>{
 	
 	public User findByUsername(String username);
 	public Boolean existsByUsername(String username);
-	public Boolean existsByEmail(String email);
-	
 
 }

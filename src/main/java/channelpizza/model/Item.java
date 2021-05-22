@@ -15,6 +15,27 @@ public class Item {
 	private String type;
 	private String date;
 	
+	
+	
+	public Item(String id, String title, String description, String image, double price, String type, String date) {
+		
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.image = image;
+		this.price = price;
+		this.type = type;
+		this.date = date;
+	}
+	
+	
+	
+	public Item() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getId() {
 		return id;
 	}

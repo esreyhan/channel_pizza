@@ -1,7 +1,7 @@
 import axios from "axios"
 
-export const getProducts = ({commit}) => {
-axios.get('http://localhost:8080/api/messages/findAllItems')
+export const getProducts = async function({commit}) {
+await axios.get('http://localhost:8080/api/messages/findAllItems')
 .then(response =>{
     commit('SET_PRODUCTS', response.data)
 })

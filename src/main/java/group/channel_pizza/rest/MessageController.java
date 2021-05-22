@@ -37,12 +37,7 @@ import group.channel_pizza.service.UserService;
 @CrossOrigin
 //(origins="http://localhost:3459")
 public class MessageController {
-	@Autowired
-	private ItemRepository itemrepository;
-
-	@Autowired
-	private UserRepository userrepository;
-	@Autowired
+/*
 	private OrderRepository orderrepository;
 
 	@Autowired
@@ -54,38 +49,21 @@ public class MessageController {
 	@Autowired
 	private OrderService orderservice;
 	
-	/*
-	@PostMapping("/addProduct")
-	public String savePizza(@RequestBody Item item) {
-		itemrepository.save(item);
-		return "Added product with id : " + item.getId();
-	}*/
+
 	
 	@PostMapping("/addProduct")
-	public String savePizza(@RequestBody Item item) {
+	public String saveProduct(@RequestBody Item item) {
 		Item item2 = itemservice.savePizza(item);
 		return "Added product with id : " + item2.getId();
 	}
-	/*
-	@GetMapping("/findAllItems") 
-	public List<Item> getPizzas (Item item) {
-		
-		return itemrepository.findAll();
-		
-	}*/
+
 	
 	@GetMapping("/findAllItems") 
 	public List<Item> getAllItems (Item item) {
 		System.out.println("itemlistsent");
 		return itemservice.getAllItems();
 	}
-	/*
-	@GetMapping("/findItemById/{id}")
-	public Optional<Item> getPizza (@PathVariable String id) {
-		
-		return itemrepository.findById(id);
-		
-	}*/
+	
 	
 	@GetMapping("/findItemById/{id}")
 	public Optional<Item> getPizza (@PathVariable String id) {
@@ -94,15 +72,7 @@ public class MessageController {
 		
 	}
 	
-	/*
-	
-	@PostMapping("/addUser")
-	public User saveUser(@RequestBody  User user) {
-		
-		User user1 = userrepository.save(user);
-		return  user1;
-	}
-	*/
+
 	@PostMapping("/addUser")
 	public User saveUser(@RequestBody  User user) {
 		
@@ -110,16 +80,7 @@ public class MessageController {
 		return  userservice.saveUser(user);
 	}
 	
-	/*
 
-	@GetMapping("/findUserByUsername/{username}")
-	public User getUserByUsername (@PathVariable String username) {
-		
-		return userrepository.findByUsername(username);
-		
-	}
-	
-	*/
 	
 	@GetMapping("/findUserByUsername/{username}")
 	public User getUserByUsername (@PathVariable String username) {
@@ -127,35 +88,14 @@ public class MessageController {
 		return userservice.getUserByUsername(username);
 		
 	}
-	/*
-	@PostMapping("/addOrder")
-	public Order saveOrder(@RequestBody  Order order) {
-		System.out.println("order adder");		
-		return orderrepository.save(order);
-	}
-	*/
+
 	
 	@PostMapping("/addOrder")
 	public Order saveOrder(@RequestBody  Order order) {	
 		return orderservice.saveOrder(order);
 	}
 	
-	/*
 	
-	@PostMapping("user")
-	public User login (@RequestBody  UserDTO userdto){
-			
-		
-		String username = userdto.getUsername();
-		if(userrepository.existsByUsername(username)){
-			User user = userrepository.findByUsername(username);
-			if (userdto.getPassword().equals(user.getPassword())) {
-				return user;
-			}
-		}
-		return null;
-		
-	}*/
 	@PostMapping("user")
 	public User login (@RequestBody  UserDTO userdto){
 			
@@ -163,6 +103,6 @@ public class MessageController {
 		return userservice.login(userdto);
 		
 	}
-
+*/
 
 }

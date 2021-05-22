@@ -28,7 +28,7 @@ public class Order {
 		this.userid = userid;
 	}
 
-	private Order() {
+	public Order() {
 		LocalDateTime myDateObj = LocalDateTime.now();
 	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 

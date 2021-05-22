@@ -12,13 +12,12 @@ import group.channel_pizza.repository.UserRepository;
 
 @Service
 public class UserService {
-	@Autowired
-	private UserRepository userrepository;
+
+@Autowired
+private UserRepository userrepository;
 	
 public User saveUser(User user) {
-		
-		User user1 = userrepository.save(user);
-		return  user1;
+		return userrepository.save(user);
 	}
 
 public User getUserByUsername (String username) {

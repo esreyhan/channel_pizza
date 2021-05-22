@@ -17,6 +17,20 @@ public class User {
 	private String email;
 	private String address;
 	
+	public User(String id, String username, String password, String fullname, String email, String address) {
+
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.fullname = fullname;
+		this.email = email;
+		this.address = address;
+	}
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getId() {
 		return id;
 	}
