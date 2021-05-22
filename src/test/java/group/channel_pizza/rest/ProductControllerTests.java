@@ -41,15 +41,19 @@ public class ProductControllerTests {
 	
 	@Test
 	public void findAllItemsTest() throws Exception {
+		//Given
 		
-	
+		
+		//When
+		String url = "http://localhost:8080/api/messages/findAllItems";
 		List<Item> items = new ArrayList<>();
 		items.add(new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02"));
 		items.add(new Item("2","Coke","Coca Cola", "coke.jpg", 2.0,"beverage","2020-10-01"));
 		
 		Mockito.when(itemservice.getAllItems()).thenReturn(items);
 		
-		String url = "http://localhost:8080/api/messages/findAllItems";
+		
+		//Then 
 		
 		MvcResult mvcResult = mockMvc.perform(get(url)).andExpect(status().isOk()).andReturn();
 		
@@ -65,15 +69,20 @@ public class ProductControllerTests {
 	
 	@Test
 	public void saveProductTest () throws JsonProcessingException, Exception {
-		
-		Item newItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		//Given
 		Item savedItem = new Item(null,"CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		Item newItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		
+		//When 
+		
 		Mockito.when(itemservice.saveItem(savedItem)).thenReturn(newItem);
 		String url = "http://localhost:8080/api/messages/addProduct";
-		System.out.println(objectMapper.writeValueAsString(savedItem));
 		mockMvc.perform(
 				post(url).contentType("application/json")
-				.content(objectMapper.writeValueAsString(newItem))).andExpect(status().isOk())
+				.content(objectMapper.writeValueAsString(newItem)))
+		
+		//Then
+		.andExpect(status().isOk())
 		.andExpect(content().string("Product id is :1"));
 		
 		
@@ -84,12 +93,12 @@ public class ProductControllerTests {
 	@Test
 	public void getItemTest() throws Exception {
 		
-		
+		//Given
 		
 		Optional<Item> item  = Optional.of(new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02"));
 		
-		//The case where there is an item
-		
+		//When
+	
 		Mockito.when(itemservice.getItem("1")).thenReturn(item);
 		
 		String url = "http://localhost:8080/api/messages//findItemById/1";
@@ -101,6 +110,8 @@ public class ProductControllerTests {
 		
 		String expectedJsonResponse = objectMapper.writeValueAsString(item);
 		
+		//Then
+		
 		assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
 		
 		
@@ -109,10 +120,14 @@ public class ProductControllerTests {
 
 	@Test 
 	public void getItemTest2() throws Exception {
+		
+		//When
 		Mockito.when(itemservice.getItem("1")).thenReturn(null);
 		String url = "http://localhost:8080/api/messages//findItemById/1";
 		MvcResult mvcResult = mockMvc.perform(get(url)).andExpect(status().isOk()).andReturn();
 		String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+		
+		//Then 
 		assertThat(actualJsonResponse).isEmpty();
 		
 	}

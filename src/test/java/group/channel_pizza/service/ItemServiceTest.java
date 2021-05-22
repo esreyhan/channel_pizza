@@ -32,23 +32,38 @@ public class ItemServiceTest {
 	@Test
 	public void testSaveItem() {
 		
-		Item savedItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		//Given
+		
 		Item newItem = new Item(null,"CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		Item savedItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
+		
+		
+		//When
+		
+		
 		Mockito.when(itemrepository.save(Mockito.any(Item.class))).thenReturn(savedItem);
 		Item result = service.saveItem(savedItem);
+		
+		//Then
 		assert(result).equals(savedItem);
 	}
 	
 	
 	@Test
 	public void testGetAllItems() {
+		
+		//Given
 		List<Item> items = new ArrayList<>();
 		items.add(new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02"));
 		items.add(new Item("2","Coke","Coca Cola", "coke.jpg", 2.0,"beverage","2020-10-01"));
 		
+		
+		//When 
 		Mockito.when(itemrepository.findAll()).thenReturn(items);
 		
 		List<Item> result = service.getAllItems();
+		
+		//Then
 		assert(result).equals(items);
 		
 	}
@@ -56,19 +71,31 @@ public class ItemServiceTest {
 	//When item is found
 	@Test
 	public void testGetItem() {
+		//Given 
 		Item returnedItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
 		String id = "1";
 		Optional<Item> opReturnedItem = Optional.of(returnedItem);
+		
+		//When
 		Mockito.when(itemrepository.findById(Mockito.any(String.class))).thenReturn(opReturnedItem);
 		Optional<Item> result = service.getItem(id);
+		
+		//Then
+		
 		assert(result).equals(opReturnedItem);
 	}
 	
 	//When item is not found
 	public void testGetItemNull() {
+		//Given
 		String id = "1";
+		
+		//When
 		Mockito.when(itemrepository.findById(Mockito.any(String.class))).thenReturn(null);
 		Optional<Item> result = service.getItem(id);
+		
+		//Then 
+		
 		assertThat(result).isNull();
 	}
 }

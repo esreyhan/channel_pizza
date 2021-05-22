@@ -26,6 +26,8 @@ public class OrderServiceTests {
 	
 	@Test
 	public void testSaveOrder() {
+		
+		//Given 
 		Order newOrder = new Order();
 		List<String> items = new ArrayList<>();
 		items.add("id 1");
@@ -45,10 +47,12 @@ public class OrderServiceTests {
 		savedOrder.setUserid("user12");
 		savedOrder.setId("1");
 		
-		
+		//When
 		Mockito.when(orderrepository.save(Mockito.any(Order.class))).thenReturn(savedOrder);
-		
 		Order result = service.saveOrder(savedOrder);
+		
+		//Then 
+		
 		assert(result).equals(savedOrder);
 	}
 
