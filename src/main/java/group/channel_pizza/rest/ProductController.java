@@ -26,7 +26,7 @@ public class ProductController {
 	@PostMapping("/addProduct")
 	public String saveProduct(@RequestBody Item item) {
 		
-		itemservice.savePizza(item);
+		itemservice.saveItem(item);
 		return "Product id is :" + item.getId();
 	}
 
@@ -38,7 +38,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/findItemById/{id}")
-	public Optional<Item> getPizza (@PathVariable String id) {
+	public Optional<Item> getItem (@PathVariable String id) {
 		
 		
 		return itemservice.getItem(id);

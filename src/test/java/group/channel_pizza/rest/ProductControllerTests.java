@@ -68,7 +68,7 @@ public class ProductControllerTests {
 		
 		Item newItem = new Item("1","CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
 		Item savedItem = new Item(null,"CokeLight","Coca Cola Light", "cokelight.jpg", 2.0,"beverage","2020-10-02");
-		Mockito.when(itemservice.savePizza(savedItem)).thenReturn(newItem);
+		Mockito.when(itemservice.saveItem(savedItem)).thenReturn(newItem);
 		String url = "http://localhost:8080/api/messages/addProduct";
 		System.out.println(objectMapper.writeValueAsString(savedItem));
 		mockMvc.perform(
@@ -82,7 +82,7 @@ public class ProductControllerTests {
 	
 	//with value
 	@Test
-	public void getPizzaTest() throws Exception {
+	public void getItemTest() throws Exception {
 		
 		
 		
@@ -108,7 +108,7 @@ public class ProductControllerTests {
 	//when there is no product, null is returned 
 
 	@Test 
-	public void getPizzaTest2() throws Exception {
+	public void getItemTest2() throws Exception {
 		Mockito.when(itemservice.getItem("1")).thenReturn(null);
 		String url = "http://localhost:8080/api/messages//findItemById/1";
 		MvcResult mvcResult = mockMvc.perform(get(url)).andExpect(status().isOk()).andReturn();

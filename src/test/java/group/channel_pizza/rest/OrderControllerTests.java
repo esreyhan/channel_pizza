@@ -35,12 +35,6 @@ public class OrderControllerTests {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	@BeforeEach
-    public void setUp() throws Exception {
-     
-        OrderController controller = new OrderController();
-        //mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-    }
 	
 
 
@@ -48,7 +42,7 @@ public class OrderControllerTests {
 
 	@Test
 	public void saveOrder () throws Exception {
-		
+		//Given
 		Order newOrder = new Order();
 		List<String> items = new ArrayList<>();
 		items.add("id 1");
@@ -74,8 +68,13 @@ public class OrderControllerTests {
 		newOrder.setTotal(5.0);
 		newOrder.setUserid("user12");
 		
-		Mockito.when(orderservice.saveOrder(Mockito.any(Order.class))).thenReturn(returnedOrder);
+		//When 
 		String url = "http://localhost:8080/api/messages/addOrder";
+		
+		Mockito.when(orderservice.saveOrder(Mockito.any(Order.class))).thenReturn(returnedOrder);
+		
+		
+		//Then  
 		MvcResult mvcResult = mockMvc.perform(post(url).contentType("application/json").content(objectMapper.writeValueAsString(newOrder))).andExpect(status().isOk()).andReturn();
 		String actualJsonRespont = mvcResult.getResponse().getContentAsString();
 		String expectedJsonResponse = objectMapper.writeValueAsString(returnedOrder);

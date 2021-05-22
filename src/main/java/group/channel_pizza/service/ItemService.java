@@ -17,7 +17,7 @@ public class ItemService {
 	@Autowired
 	private ItemRepository itemrepository;
 	
-	public Item savePizza(Item item) {
+	public Item saveItem(Item item) {
 		itemrepository.save(item);
 		return item;
 	}

@@ -81,26 +81,7 @@ public class UserControllerTests {
 
 	}
 	
-	//When there is existing user and user registration is not successful
-		@Test
-		public void saveUserTestNotSuccessful () throws JsonProcessingException, Exception {
-			
-						
-			User savedUser = new User("1","test-username","test-password","test-fullname","test-email","test-address");
-			
-			savedUser.setId(null);
-		
-			Mockito.when(userservice.saveUser(Mockito.any(User.class))).thenThrow(DuplicateKeyException.class);;
-			String url = "http://localhost:8080/api/messages/addUser";
-			
-			String jsonrequest = objectMapper.writeValueAsString(savedUser);
-			
-			mockMvc.perform(
-					post(url)
-					.content(jsonrequest).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().is5xxServerError());
-			
 
-		}
 	
 	//User is found
 	@Test

@@ -34,7 +34,6 @@ public class UserController {
 	}
 	
 
-	
 	@GetMapping("/findUserByUsername/{username}")
 	public User getUserByUsername (@PathVariable String username) {
 		
