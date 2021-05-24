@@ -12,27 +12,30 @@ const store = new Vuex.Store()
 
 
 describe('Appheader.vue', () => {
+    const $store = {
+        state:{
+            cart:[]
+        }, 
+        getters : {
+            authenticated: () => ({}),
+            'auth/authenticated': null,
+            user: () => ({}),
+            'auth/user': null
 
-    test('is a vue instance', () => {
-        const $store = {
-                state:{
-                    cart:[]
-                }, 
-                getters : {
-                    authenticated: () => ({}),
-                    'auth/authenticated': null,
-                    user: () => ({}),
-                    'auth/user': null
-
-                }
         }
-        const wrapper = mount(AppHeader, {
+}
+    const factory = ($store) =>{ 
+        return mount(AppHeader, {
             mocks : {
             $store,
             },
-            stubs: ['router-link', 'router-view']
-         
+            stubs: ['router-link', 'router-view'],
+         localVue
         });
+    }
+    test('is a vue instance', () => {
+        const wrapper = factory($store)
+        
         expect(wrapper.isVueInstance()).toBeTruthy()
     }),
     test('renders the username and logout tab', () =>{
@@ -49,13 +52,8 @@ describe('Appheader.vue', () => {
 
             }
     }
-    const wrapper = mount(AppHeader, {
-        mocks : {
-        $store,
-        },
-        stubs: ['router-link', 'router-view']
-     
-    });
+    const wrapper = factory($store)
+ 
     expect(wrapper.html()).toContain(user&'logout')
     }
     );
@@ -73,13 +71,7 @@ describe('Appheader.vue', () => {
 
             }
     }
-    const wrapper = mount(AppHeader, {
-        mocks : {
-        $store,
-        },
-        stubs: ['router-link', 'router-view']
-     
-    });
+    const wrapper = factory($store)
     expect(wrapper.html()).toContain('login'&'register')
     }
     );
@@ -97,14 +89,7 @@ describe('Appheader.vue', () => {
 
             }
     }
-    const wrapper = mount(AppHeader, {
-        mocks : {
-        $store,
-        },
-        stubs: ['router-link', 'router-view']
-     
-    });
-
+    const wrapper = factory($store)
     const logout = jest.fn();
     wrapper.setMethods({
         logout:logout
@@ -115,6 +100,9 @@ describe('Appheader.vue', () => {
     }
     );
     test('calls the auth module action signout when logout is called', () => {
+       
+
+        
         let actions
         let state
         let store
@@ -148,7 +136,7 @@ describe('Appheader.vue', () => {
             });
             wrapper.find('#logOut').trigger('click');
     
-            expect(actions.signout).toHaveBeenCalled();
+            expect(mock_action).toHaveBeenCalled();
         }
         );
     
