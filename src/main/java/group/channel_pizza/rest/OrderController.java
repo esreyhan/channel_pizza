@@ -20,7 +20,6 @@ public class OrderController {
 	
 	@PostMapping("/addOrder")
 	public Order saveOrder(@RequestBody  Order order) {	
-		System.out.println(order.getDate());
 		return orderservice.saveOrder(order);
 	}
 	

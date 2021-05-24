@@ -18,8 +18,8 @@ public class ItemService {
 	private ItemRepository itemrepository;
 	
 	public Item saveItem(Item item) {
-		itemrepository.save(item);
-		return item;
+		
+		return itemrepository.save(item);
 	}
 	public List<Item> getAllItems () {
 	return itemrepository.findAll();

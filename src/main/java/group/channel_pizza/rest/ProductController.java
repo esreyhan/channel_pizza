@@ -25,7 +25,6 @@ public class ProductController {
 	
 	@PostMapping("/addProduct")
 	public String saveProduct(@RequestBody Item item) {
-		
 		itemservice.saveItem(item);
 		return "Product id is :" + item.getId();
 	}

@@ -43,7 +43,6 @@ public class UserController {
 	@PostMapping("user")
 	public User login (@RequestBody  UserDTO userdto){
 		
-		System.out.println(userdto);
 			
 		
 		return userservice.login(userdto);
