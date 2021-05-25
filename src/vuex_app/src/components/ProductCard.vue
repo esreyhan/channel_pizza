@@ -19,9 +19,20 @@
         </div>
 </template>
 <script>
+/**
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * 
+ * The component shows product details. The component's parent component is ProductList.  
+ */
 export default {
 
     props:["product"], 
+
+    /**
+     * addToCart method is called when Add To Chart link is clicked. 
+     * @param {product} product - The product object
+     * @param {int} quantity - quantity for the product 
+     */
     methods:{
         addToCart(){
             this.$store.dispatch('addProductToCart',{

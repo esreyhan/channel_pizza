@@ -36,14 +36,24 @@
  
 </template>
 <script>
+/**
+ * This is a page where products are listed. ProductCard custom component is used for listing the products.
+ */
 import ProductCard from "../components/ProductCard"
 export default {
     components: {
        ProductCard
-    }, 
+    },
+/**
+ * Products are get from rest service with an axios call througj getProducts action in mount stage and kept in vuex store. 
+ */
     mounted() {
     this.$store.dispatch('getProducts')
 },
+
+/**
+ * product list is get from vuex store. 
+ */
     computed : {
         products () {
             return this.$store.state.products;

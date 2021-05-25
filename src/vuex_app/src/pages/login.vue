@@ -24,7 +24,11 @@
 </template>
 
 <script>
-
+/**
+ * This is a login page for user signin. 
+ * 
+ * Vuex store is used for keeping product and user information. 
+ */
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
   export default {
@@ -54,7 +58,10 @@ import {mapState} from 'vuex'
             user:'auth/authenticated'
         }),
        redirect () {
-          
+        /**
+         * The user data is checked in the function upon submit button.
+         * If registration is successful, the user is redirected to the ProductList component. 
+         */
           if(this.authorized) {
           this.$router.replace({
                 name: 'ProductList'
@@ -64,10 +71,15 @@ import {mapState} from 'vuex'
           }
 
         },
+
+        /**
+         * if the axios call in the signIn vuex actions is successful, the redirect function is called. 
+         */
         async submit(){ 
-          
+          /**
+           * @param {object} takes form object as a parameter. 
+           */
          await this.signIn(this.form).then(() =>{
-           console.log("submit invoked")
           this.redirect()
          })
          

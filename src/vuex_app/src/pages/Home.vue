@@ -23,7 +23,11 @@
 <script>
 
 
-// Local registration
+/**
+ * Main Page for the web application. The carroussel links to the menu page. No javascript code is involved.
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ *  
+*/
 export default {
     components: {
         

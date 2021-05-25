@@ -4,12 +4,6 @@ import {createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import auth from '@/store/auth'
-/*
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
-const store = new Vuex.Store()
-*/
 
 describe('Actions', () => {
     const redirect_mock = jest.fn()

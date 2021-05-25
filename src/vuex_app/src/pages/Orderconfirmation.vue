@@ -37,6 +37,10 @@
 </template>
 <script>
 export default {
+
+    /**
+     * Cart and total order information is shown on the page. cart and total price is acquired from vuex store. 
+     */
      name: 'Modal',
    
     computed: { cart() {

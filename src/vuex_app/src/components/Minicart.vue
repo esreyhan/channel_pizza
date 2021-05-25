@@ -44,10 +44,15 @@
     </div>
 </template>
 <script>
+/**
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * 
+ * The component shows items added to the cart. 
+ */
 import {mapState} from 'vuex'
 import {mapActions} from 'vuex'
 export default {
-     name: 'Modal',
+     name: 'Product Card',
      
       data () {
           return {
@@ -61,26 +66,49 @@ export default {
         }
       }
       },
-   
+   /**
+    * Returns the cart from the vuex state 
+    */
     computed: { cart() {
           return this.$store.state.cart;
-      }, cartItemCount() {
+      }, 
+     /**
+      *  Returns the total item count from vuex store
+      */ 
+      cartItemCount() {
       return this.$store.getters.cartItemCount;
     },
+    /**
+     * Total price is returned from vuex store 
+     */
     total () {
         return this.$store.getters.total
     },
+    /**
+     * userid and cart is mapped in vuex store for use in the template
+     */
     ...mapState({
         userid: state => state.auth.id,
         cart: state => state.cart
       
       })
     },
+    /**
+     * addOrder action in vuex is called upon click of checkout link 
+     */
+    /**
+     * cartClear action in vuex is called upon click of clear basket button
+     */
+
     methods :{ 
         ...mapActions({
            regOrder: 'addOrder',
            clear: 'cartClear'
         }),
+
+        /**
+     * redirect method is called upon click of continue shopping button
+     */
         redirect() {
              
           this.$router.replace({
@@ -89,7 +117,10 @@ export default {
             
         },
 
-       
+    /**
+     * The signin is a requirement for adding the order. 
+     * This alert is called when the user information is not present in vuex store, upon click of checkout link and checkOut method. 
+     */   
         
          showAlert() {
     const options = {title: 'Sign In Required', size: 'sm'}
@@ -98,6 +129,12 @@ export default {
       console.log(res) // {ok: true|false|undefined}
     })
   },
+
+  /**
+   * checkOut method is called upon click of checkout link. 
+   * Orderitems and quantity arrays are organized respectively with items and their quantities and order object is prepared for axios call. 
+   * redirect method is called upon successful axios call made in vuex action: addOrder through method regOrder. 
+   */
        async checkOut(){
             let orderitems = []
             let quantity = []

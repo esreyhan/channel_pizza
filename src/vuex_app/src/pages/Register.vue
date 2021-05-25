@@ -66,13 +66,15 @@
 </template>
 
 <script>
+
+/** 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * This is a page for registration.
+ */
 import axios from 'axios'
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
-export default  {/*components: {
-        VueBootstrapTypeahead
-        
-    },*/
+export default  {
 
     
 
@@ -103,6 +105,9 @@ export default  {/*components: {
        
 
     },
+   /**
+    * User information is kept in vuex store. As the page is for registration, auth module is mapped. 
+    */
     computed: {
         ...mapState({
         authorized: state => state.auth.user
@@ -110,7 +115,10 @@ export default  {/*components: {
       })
       },
     methods: {
-    
+    /**
+     * class parameters countryDta and regionData are set by the method, if the rest service call is successful.
+     * @param {string} code - postcode information for api call
+     */
     postCodeSearch: function() {
        
    const url = "https://api.postcodes.io/postcodes/" + this.code
@@ -123,33 +131,39 @@ export default  {/*components: {
         
         this.countryData.push(this.postcodes[0].country);
         this.regionData.push(this.postcodes[0].region)
-        //this.countryData.push(this.postcodes[0].admin_county)
-        //this.countryData.push(this.postcodes[0].admin_district)
-        //this.countryData.push(this.postcodes[0].admin_ward)
+      
       }).catch(error=>{
        console.log(error)
  })
       },
-
+/**
+ * Register action in vuex store is mapped which is triggerred upon submit and successful username check. 
+ */
       ...mapActions({
          register: 'auth/register'
       
     }),
-       
+    /**
+     *  The alert for the missing fields. 
+     */ 
   showAlert() {
     const options = {title: 'Missing Fields', size: 'sm'}
     this.$dialogs.alert('Please fulfill all fields', options)
     
 
   },
-
+/**
+ * The alert for the existing username
+ */
    showAlert2() {
     const options = {title: 'Username', size: 'sm'}
     this.$dialogs.alert('Username Exists', options)
     
 
   },
-
+/**
+ * The alert for succcessful login. User is redirected to menu page. 
+ */
   showSuccessAlert() {
        const options = {title: 'Success', size: 'sm'}
     this.$dialogs.alert('You have successfully signed up', options).then(() =>{
@@ -158,12 +172,15 @@ export default  {/*components: {
               })
                 })
   },
+  /**
+   * The user information in the form is checked first. if the username exists, an alert is shown, otherwise, submit method is called. 
+   */
   async userCheck () {
       
        if(!!this.adress_line &&!!this.firstname && !!this.form.username && !!this.form.password&&!!this.lastname&&!!this.code &&!!this.country &&!!this.region) {
         
         await axios.get("http://localhost:8080/api/messages/findUserByUsername/" + this.form.username).then((response)=>{
-      
+      //Alert for existing username. 
        if(response.data) {
             this.showAlert2()
          
@@ -173,15 +190,19 @@ export default  {/*components: {
         }
        }).catch(error => {
            console.log(error)
+        //Alert for missing fields. 
        }) }else {
         this.showAlert()
        }
        
     },
 
-
+/**
+ * The register action of the auth module of vuex store is called finally, upon all checks. 
+ * If the registration is successful, the alert is shown. 
+ */
        async submit(){ 
-          
+          console.log("submit button")
             this.form.address = this.code + " " + this.country + " " + this.region + " " + this.adress_line
             this.form.fullname = this.firstname + " " + this.lastname
          await this.register(this.form).then(() => {
@@ -200,17 +221,3 @@ export default  {/*components: {
 }
 
 </script>
-
-<style>
-/*
-.v-dialog--custom {
-  width: 10%;
-}
-/* Desktop */
-/*
-@media screen and (min-width: 768px) {
-  .v-dialog--custom {
-    width: 50%;
-  }
-}*/
-</style>
