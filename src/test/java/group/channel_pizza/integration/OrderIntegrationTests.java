@@ -30,10 +30,18 @@ import org.mockito.Mockito;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import channelpizza.model.Item;
-import channelpizza.model.Order;
+import group.channel_pizza.model.Item;
+import group.channel_pizza.model.Order;
 import group.channel_pizza.repository.OrderRepository;
-
+/**
+ * The class is for integration tests with mock MVC structure. 
+ * The test ensures that the input from test layer is transferred and processed to repository layer and correct output is returned. 
+ * 
+ * Memory based database, container or different collection methods are not used for these tests as instructed. Mockito is used for mocking repository responses.
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 @AutoConfigureJsonTesters
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -53,7 +61,13 @@ private JacksonTester<Order> jsonPizza;
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	
+	/**
+	 * 
+	 * Orderrepository save method is mocked. The order is successfully returned. 
+	 * 
+	 * @throws JsonProcessingException
+	 * @throws Exception
+	 */
 	@Test
 	public void Test () throws JsonProcessingException, Exception {
 		

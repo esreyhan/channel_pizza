@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"group.channel_pizza"},{"l":"group.channel_pizza.integration"},{"l":"group.channel_pizza.model"},{"l":"group.channel_pizza.repository"},{"l":"group.channel_pizza.rest"},{"l":"group.channel_pizza.service"}];updateSearchResults();

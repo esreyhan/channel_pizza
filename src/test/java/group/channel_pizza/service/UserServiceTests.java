@@ -8,12 +8,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.UserRepository;
+
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+/**
+ *  The class is for the unit tests of UserService class. UserRepository methods are mocked and UserService methods outputs are checked. 
+ * 
+ * Mockito and junit are used for testing and testing environment. 
+ * 
+ * @author Enis Sinan Reyhan
+ */
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
@@ -26,7 +33,10 @@ public class UserServiceTests {
 	private UserService service;
 	
 	//Username information is true
-	
+	/**
+	 * UserRepository existsByUsername method is mocked as to return true and findByUsername is mockked as to return User object. 
+	 * The test method assumes that user exists. 
+	 */
 	@Test
 	public void testLogin() {
 		//Given 
@@ -46,7 +56,9 @@ public class UserServiceTests {
 		
 		
 	}
-	
+	/**
+	 * The test method is based on the assumption that the user does not exist. Thıs, UserRepository existByUsername method returns false. 
+	 */
 	
 	//Username does not exist
 	@Test
@@ -70,6 +82,10 @@ public class UserServiceTests {
 		
 	}
 	
+	/**
+	 * The tset method is based on the assumption that user exists but password does not match. 
+	 * Thus, UserRepository existByUsername returns User object with different password. 
+	 */
 	
 	//Username exists but password does not match
 	@Test
@@ -93,7 +109,9 @@ public class UserServiceTests {
 		
 		
 	}
-	
+	/**
+	 * The  Userrepository save method is mocked as to return User Object. The sercice method returns the user object. 
+	 */
 	@Test
 	public void testSaveUser() {
 		//Given
@@ -110,6 +128,11 @@ public class UserServiceTests {
 		
 	}
 	
+	/**
+	 * The user with the checked username is found. The UserRepository findByUsername object is mocked as to return User Object.  
+	 * The method successfully returns the User object. 
+	 */
+	
 	//User is found
 	@Test
 	public void testGetUserByUsername() {
@@ -125,6 +148,10 @@ public class UserServiceTests {
 		
 		assert(result).equals(savedUser);
 	}
+	
+	/**
+	 * The test case is user not found in ther database. the UserRepository findByUsername method returns null, thus the service method also returns null. 
+	 */
 	
 	//User is not found
 	@Test

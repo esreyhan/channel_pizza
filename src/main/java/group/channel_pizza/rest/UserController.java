@@ -11,10 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.UserRepository;
 import group.channel_pizza.service.UserService;
+
+/**
+ * 
+ * The rest service class for entity User
+ *
+ *  Please see: {@link group.channel_pizza.model.User} class 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 
 @RestController
 @RequestMapping("/api/messages")
@@ -26,6 +36,11 @@ public class UserController {
 	@Autowired
 	private UserRepository userrepository;
 	
+	/**
+	 * <p> Add user from rest service </p>
+	 * @param user: get user as input from web service
+	 * @return returns user as an output upon successful registration 
+	 */
 	@PostMapping("/addUser")
 	public User saveUser (@RequestBody  User user) {
 	
@@ -42,8 +57,7 @@ public class UserController {
 	}
 	@PostMapping("user")
 	public User login (@RequestBody  UserDTO userdto){
-		
-			
+					
 		
 		return userservice.login(userdto);
 		

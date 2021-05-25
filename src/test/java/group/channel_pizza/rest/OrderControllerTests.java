@@ -23,12 +23,21 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import channelpizza.model.Order;
-import channelpizza.model.User;
+import group.channel_pizza.model.Order;
+import group.channel_pizza.model.User;
 import group.channel_pizza.repository.OrderRepository;
 import group.channel_pizza.repository.UserRepository;
 import group.channel_pizza.service.OrderService;
+
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+/**
+ * The class is unit test for OrderController class. The service layer is mocked, thus, only the web server is tested.  
+ * Junit and mockito is used. 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 
 @WebMvcTest(OrderController.class)
 public class OrderControllerTests {
@@ -45,7 +54,12 @@ public class OrderControllerTests {
 	
 	
 
-
+/**
+ * Orderservice saveOrder method is mocked to return an order. Saved order is sent successfully by web service .
+ * 
+ *  
+ * @throws Exception
+ */
 
 
 	@Test

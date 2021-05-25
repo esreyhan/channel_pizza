@@ -21,9 +21,19 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import channelpizza.model.Item;
+import group.channel_pizza.model.Item;
 import group.channel_pizza.repository.ItemRepository;
 import group.channel_pizza.service.ItemService;
+/**
+ * 
+ * The class is for unit tests for ProductController classs. The service layer is mocked and verified whether the rest service responses are accurate. 
+ * 
+ * Mockito and junit are used for test and test environment. 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
+
 
 @WebMvcTest(ProductController.class)
 public class ProductControllerTests {
@@ -38,7 +48,11 @@ public class ProductControllerTests {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	
+	/**
+	 * Itemservice getAllItems are mocked as to return a list. The list is successfully sent by web service. 
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void findAllItemsTest() throws Exception {
 		//Given
@@ -67,6 +81,13 @@ public class ProductControllerTests {
 		
 	}
 	
+	/**
+	 * Itemservice saveItem method is mocked to return an item. The web service successfully returns the saved item. 
+	 * 
+	 * @throws JsonProcessingException
+	 * @throws Exception
+	 */
+	
 	@Test
 	public void saveProductTest () throws JsonProcessingException, Exception {
 		//Given
@@ -88,7 +109,9 @@ public class ProductControllerTests {
 		
 	
 	}
-	
+	/*
+	 * The method returns the respective item by id. Itemservie getItem method is mocked to return an item. Such item is successfully returned by web service.
+	 */
 	//with value
 	@Test
 	public void getItemTest() throws Exception {
@@ -116,6 +139,12 @@ public class ProductControllerTests {
 		
 		
 }
+	/**
+	 * This is the test case where there is no item in the database with the requested id. the itemservice getItem method is mocked to return null. 
+	 * Web service successfully returns with empty response. 
+	 *
+	 * @throws Exception
+	 */
 	//when there is no product, null is returned 
 
 	@Test 

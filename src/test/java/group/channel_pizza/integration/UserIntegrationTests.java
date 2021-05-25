@@ -32,10 +32,19 @@ import org.mockito.Mockito;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.UserRepository;
 
+/**
+ * The class is for integration tests with mock MVC structure. 
+ * The test ensures that the input from test layer is transferred and processed to repository layer and correct output is returned. 
+ * 
+ * Memory based database, container or different collection methods are not used for these tests as instructed. Mockito is used for mocking repository responses.
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 
 @AutoConfigureJsonTesters
 @SpringBootTest
@@ -55,12 +64,17 @@ private JacksonTester<User> jsonPizza;
 	
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+	/**
+	 * Userrepository save method is mocked. The response is successfully returned from database. 
+	 * 
+	 * @throws JsonProcessingException
+	 * @throws Exception
+	 */
 
 	@Test
 	public void UserRepositoryTest () throws JsonProcessingException, Exception {
 		
-		
+	
 		
 		User savedUser = new User("1","test-username","test-password","test-fullname","test-email","test-address");
 		
@@ -79,6 +93,11 @@ private JacksonTester<User> jsonPizza;
 	
 	
 	}
+	/**
+	 * The userrepository findByUsername method is mocked to return a user, on the assumption that the user exists. The user succesfully returns from web service. 
+	 * 
+	 * @throws Exception
+	 */
 	
 	//User is found
 	@Test
@@ -100,7 +119,11 @@ private JacksonTester<User> jsonPizza;
 
 		
 	}
-	
+	/**
+	 * The userrepository findByUsername method is mocked to return null, on the assumption that the user does not exist. The response is successfully empty. 
+	 * 
+	 * @throws Exception
+	 */
 	//User not found - Expect to return empyty
 	@Test
 	public void getUserByUsernameTestNull () throws Exception {
@@ -121,7 +144,12 @@ private JacksonTester<User> jsonPizza;
 
 		
 	}
-	
+	/**
+	 * The method checks whether login information is successful or not. The userrepository existsByUsername and findByUSername methods are mocked as to return a user on the assumnption
+	 * that such user exists with the same username and password, passed by rest web service. 
+	 * 
+	 * @throws Exception
+	 */
 	
 	//Where login information is successful
 	@Test
@@ -151,8 +179,13 @@ private JacksonTester<User> jsonPizza;
 		
 		
 		
+		
 	}
-	
+	/**
+	*The method checks whether login information is successful or not. The userrepository existsByUsername method is mocked as to return a user on the assumnption
+	* that such user does not exist.  
+	* 
+	*/
 	//When user information is not successfull (user not found)
 	@Test
 	public void loginNull () throws Exception {
@@ -176,8 +209,13 @@ private JacksonTester<User> jsonPizza;
 		
 		
 	}
-	
-	//Where login information is successful (user information does not match)
+	/**
+	 * The userrepository existsByUsername method is mocked as to return true, however, user with different password is returned by mocked findByUsername method. 
+	 * The rest api response is in line with the userrepository method's output. 
+	 * 
+	 * @throws Exception
+	 */
+	//Where password does not match
 	@Test
 	public void loginIncorrect () throws Exception {
 		//Given 

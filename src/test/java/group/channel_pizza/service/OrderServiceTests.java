@@ -11,8 +11,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import channelpizza.model.Order;
+import group.channel_pizza.model.Order;
 import group.channel_pizza.repository.OrderRepository;
+
+/**
+ * 
+ * The class is for the unit tests of OrderService class. OrderRepository methods are mocked and OrderService methods outputs are checked. 
+ * 
+ * Mockito and junit are used for testing and testing environment. 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
@@ -23,7 +33,11 @@ public class OrderServiceTests {
 	
 	@InjectMocks
 	private OrderService service;
-	
+/**
+ * Itemrepository save method is mocked to return an order. Saved order is sent successfully by web service .
+ * 
+ *  
+ */
 	@Test
 	public void testSaveOrder() {
 		

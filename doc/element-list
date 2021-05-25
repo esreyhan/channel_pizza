@@ -1,0 +1,6 @@
+group.channel_pizza
+group.channel_pizza.integration
+group.channel_pizza.model
+group.channel_pizza.repository
+group.channel_pizza.rest
+group.channel_pizza.service

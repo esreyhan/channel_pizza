@@ -22,13 +22,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.DuplicateKeyException;
 
-import channelpizza.model.Order;
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.Order;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.UserRepository;
 import group.channel_pizza.service.UserService;
 
-
+/**
+ * 
+ * The class is for unit tests for UserController classs. The service layer is mocked and verified whether the rest service responses are accurate. 
+ * 
+ * Mockito and junit are used for test and test environment. 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 @WebMvcTest(UserController.class)
 public class UserControllerTests {
 	@Autowired
@@ -49,7 +57,11 @@ public class UserControllerTests {
 	private ObjectMapper objectMapper;
 	
 
-	
+	/**
+	 * UserService saveUser method is mocked as to return a user. The user is successfully returned by web service.
+	 * @throws JsonProcessingException
+	 * @throws Exception
+	 */
 	
 	@Test
 	public void saveUserTest () throws JsonProcessingException, Exception {
@@ -81,7 +93,11 @@ public class UserControllerTests {
 
 	}
 	
-
+/**
+ * The UserService getUserByUsername method is mocked to return a user, on the assumption that the user exists. The user succesfully returns from web service.
+ * 
+ * @throws Exception
+ */
 	
 	//User is found
 	@Test
@@ -101,7 +117,9 @@ public class UserControllerTests {
 		//Then
 		assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
 
-		
+/**
+ *  The UserService getUserByUsername method is mocked to return null, on the assumption that the user does not exist. The response is successfully empty. 
+ */
 	}
 	
 	//User not found - Expect to return empyty
@@ -124,7 +142,12 @@ public class UserControllerTests {
 
 		
 	}
-	
+	/**
+	 * 
+	 * The method checks whether login information is successful or not. The userservice login method is mockked to return a user. The web service succesfully returns the user. 
+	 * 
+	 * @throws Exception
+	 */
 	
 	
 	//Where login information is successful
@@ -154,7 +177,9 @@ public class UserControllerTests {
 		
 		
 	}
-	
+	/*
+	 * The UserService login method is mocked as to return null, on the assunmption that user does not exist or password is wrong. Empty response is returned by web service. 
+	 */
 	//When user information is not successfull (user not found or password does not match)
 	@Test
 	public void loginNull () throws Exception {

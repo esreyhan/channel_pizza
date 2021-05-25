@@ -14,9 +14,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import channelpizza.model.Item;
-import channelpizza.model.Order;
+import group.channel_pizza.model.Item;
+import group.channel_pizza.model.Order;
 import group.channel_pizza.repository.ItemRepository;
+
+/**
+ * 
+ * The class is for the unit tests of ItemService class. ItemRepository methods are mocked and ItemService methods outputs are checked. 
+ * 
+ * Mockito and junit are used for testing and testing environment. 
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
@@ -28,7 +38,9 @@ public class ItemServiceTest {
 	@InjectMocks
 	private ItemService service;
 	
-	
+	/**
+	 * Itemrepository saveItem method is mocked as to return Item object. Method successfully returns. 
+	 */
 	@Test
 	public void testSaveItem() {
 		
@@ -42,13 +54,15 @@ public class ItemServiceTest {
 		
 		
 		Mockito.when(itemrepository.save(Mockito.any(Item.class))).thenReturn(savedItem);
-		Item result = service.saveItem(savedItem);
+		Item result = service.saveItem(newItem);
 		
 		//Then
 		assert(result).equals(savedItem);
 	}
 	
-	
+	/**
+	 * Itemrepository findAll method is mocked as to return items list. Method succesfully returns the list. 
+	 */
 	@Test
 	public void testGetAllItems() {
 		
@@ -67,7 +81,9 @@ public class ItemServiceTest {
 		assert(result).equals(items);
 		
 	}
-	
+	/**
+	 * Itemrepository findById method is mocked to return Item object, for the case where an item is found. The method returns the Item object. 
+	 */
 	//When item is found
 	@Test
 	public void testGetItem() {
@@ -84,7 +100,9 @@ public class ItemServiceTest {
 		
 		assert(result).equals(opReturnedItem);
 	}
-	
+	/**
+	 * Itemrepository findById is mocked as to return null, for the case where the items does not exist. Method also returns null. 
+	 */
 	//When item is not found
 	public void testGetItemNull() {
 		//Given

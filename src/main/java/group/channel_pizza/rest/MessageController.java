@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import channelpizza.model.Item;
-import channelpizza.model.Order;
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.Item;
+import group.channel_pizza.model.Order;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.ItemRepository;
 import group.channel_pizza.repository.OrderRepository;
 import group.channel_pizza.repository.UserRepository;

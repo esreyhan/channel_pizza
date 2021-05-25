@@ -41,9 +41,9 @@ import org.mockito.Mockito;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import channelpizza.model.Item;
-import channelpizza.model.User;
-import channelpizza.model.UserDTO;
+import group.channel_pizza.model.Item;
+import group.channel_pizza.model.User;
+import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.ItemRepository;
 import group.channel_pizza.repository.OrderRepository;
 import group.channel_pizza.repository.UserRepository;
@@ -51,11 +51,19 @@ import group.channel_pizza.rest.OrderController;
 import group.channel_pizza.rest.ProductController;
 import group.channel_pizza.service.ItemService;
 
-
+/**
+ * 
+ * The class is for integration tests with mock MVC structure. 
+ * The test ensures that the input from test layer is transferred and processed to repository layer and correct output is returned. 
+ * 
+ * Memory based database, container or different collection methods are not used for these tests as instructed. Mockito is used for mocking repository responses.
+ * 
+ * @author Enis Sinan Reyhan
+ *
+ */
 @AutoConfigureJsonTesters
 @SpringBootTest
 @AutoConfigureMockMvc
-
 public class ItemIntegrationTests {
 
 
@@ -72,6 +80,11 @@ public class ItemIntegrationTests {
 	
 	@Autowired
 	private ObjectMapper objectMapper;
+	
+	/**
+	 * itemrepository.findAll() method is mocked with a list of two items. the list is returned from web service. 
+	 * @throws Exception
+	 */
 
 	@Test
 	public void getAllItems () throws Exception {
@@ -92,7 +105,11 @@ public class ItemIntegrationTests {
 
 		
 	}
-	
+	/**
+	 * The itemrepository save method is mocked. The id of the newitem (mocked as to be generated from database) is returned.
+	 * @throws JsonProcessingException
+	 * @throws Exception
+	 */
 	@Test
 	public void saveProductTest () throws JsonProcessingException, Exception {
 		//Given
@@ -114,8 +131,10 @@ public class ItemIntegrationTests {
 		
 	
 	}
-	
-	//with value
+	/**
+	 * The itemrepository's findById is mocked to return an item on the assumption that the item exists in the database. The item is returned by web service. 
+	 * @throws Exception
+	 */
 		@Test
 		public void getItemTest() throws Exception {
 			
@@ -142,7 +161,12 @@ public class ItemIntegrationTests {
 			
 			
 	}
-		//when there is no product, null is returned 
+		/**
+		 * 
+		 * The itemrepository's findById is mocked as not to return any item (null). The empty response is returned by web service. 
+		 * 
+		 * @throws Exception
+		 */
 
 		@Test 
 		public void getItemTest2() throws Exception {
