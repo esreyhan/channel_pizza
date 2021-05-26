@@ -26,7 +26,7 @@ describe('ProductCard.vue', () => {
               mutations,
               getters: auth.getters,
               namespaced: true
-            }
+            }npm
           }*/
         });
         const title1 = "italian__"

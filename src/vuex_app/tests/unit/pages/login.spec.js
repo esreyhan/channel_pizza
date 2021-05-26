@@ -5,6 +5,11 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import auth from '@/store/auth'
 
+/**
+ * Test class for Login page Vue.js unit test are used. 
+ * It is checked whether the form data is passed as element and the respective functions are called for succesfful and unsuccesful login. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 describe('Actions', () => {
     const redirect_mock = jest.fn()
             const signIn_mock = async () => { return new Promise((response) => {

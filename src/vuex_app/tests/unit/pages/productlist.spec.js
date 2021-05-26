@@ -6,6 +6,12 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
+/**
+ * Test class for ProductList page. Vue.js unit test are used. 
+ * It is checked whether product items are rendered correctly. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
+
 describe('Proeductlist.vue', () => {
 
 
@@ -26,15 +32,7 @@ describe('Proeductlist.vue', () => {
     const  store = new Vuex.Store({
             state,
             getters,
-            /*
-            modules: {
-              auth: {
-                actions,
-                mutations,
-                getters: auth.getters,
-                namespaced: true
-              }
-            }*/
+        
           });
 
     const wrapper = mount(ProductList, {

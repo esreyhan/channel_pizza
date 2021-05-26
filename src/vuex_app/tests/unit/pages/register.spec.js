@@ -14,14 +14,17 @@ let url = ''
 let body = {}
 
 /**
- * mock axios method
+ * This is a test caase for Register page. Vue.js unit tests are used. 
+ * The rest api axios calls are mocked in line with the respective scenarios. 
+ * It is checked whether the respective functions are called in accordance with the relevant scenarios. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
  */
 jest.mock('axios',() => ({
   
     get: (_url) =>{
        
         switch (_url) {
-            
+            //postcode call for autocomplete
             case 'https://api.postcodes.io/postcodes/abc':
                 return new Promise((response) => {
                 url= _url 
@@ -29,6 +32,8 @@ jest.mock('axios',() => ({
                 response(mock_data);
         
                 })
+
+            //username call returning existing username
             case 'http://localhost:8080/api/messages/findUserByUsername/def':
                 return new Promise((response) => {
                     url= _url 
@@ -36,6 +41,8 @@ jest.mock('axios',() => ({
                     const mock_data= {data:{username:"def","password": "12345"}}
                     response(mock_data);
                 })
+
+            //username call with a null response 
             case 'http://localhost:8080/api/messages/findUserByUsername/abc':
                     return new Promise((response) => {
                         url= _url 
@@ -97,14 +104,7 @@ wrapper = mount(Register, {
 });
 })
     test('is a vue instance', () => {
-    /*
-        const wrapper = mount(Register, {
-            mocks : {
-            $store,
-            },
-            stubs: ['router-link', 'router-view']
-         
-        });*/
+ 
         expect(wrapper.isVueInstance()).toBeTruthy()
     });
 
@@ -152,7 +152,7 @@ test('alert is triggered when form data is full but the username exists', async 
     wrapper.setData({firstname: 'a'});
     wrapper.setData({lastname:'b'});
     wrapper.setData({ form:{
-        //when username 'def is called in mock axios, a username object is returned
+        //when username 'def is called in mock axios, a user object is returned
         username:'def',
         password:'y',
         address:null,
