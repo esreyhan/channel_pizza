@@ -1,0 +1,10 @@
+group/channel_pizza/rest/OrderControllerTests.class
+group/channel_pizza/service/OrderServiceTests.class
+group/channel_pizza/integration/UserIntegrationTests.class
+group/channel_pizza/integration/OrderIntegrationTests.class
+group/channel_pizza/integration/ItemIntegrationTests.class
+group/channel_pizza/rest/UserControllerTests.class
+group/channel_pizza/service/ItemServiceTest.class
+group/channel_pizza/ChannelPizzaApplicationTests.class
+group/channel_pizza/service/UserServiceTests.class
+group/channel_pizza/rest/ProductControllerTests.class

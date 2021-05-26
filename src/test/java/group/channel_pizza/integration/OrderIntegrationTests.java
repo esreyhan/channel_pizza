@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,6 +44,7 @@ import group.channel_pizza.repository.OrderRepository;
  * @author Enis Sinan Reyhan
  *
  */
+@EnableAutoConfiguration(exclude = EmbeddedMongoAutoConfiguration.class)
 @AutoConfigureJsonTesters
 @SpringBootTest
 @AutoConfigureMockMvc

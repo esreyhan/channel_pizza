@@ -1,0 +1,16 @@
+group/channel_pizza/model/OrderItemDTO.class
+group/channel_pizza/model/Item.class
+group/channel_pizza/rest/OrderController.class
+group/channel_pizza/rest/UserController.class
+group/channel_pizza/service/OrderService.class
+group/channel_pizza/service/UserService.class
+group/channel_pizza/model/Order.class
+group/channel_pizza/service/ItemService.class
+group/channel_pizza/repository/ItemRepository.class
+group/channel_pizza/rest/MessageController.class
+group/channel_pizza/model/User.class
+group/channel_pizza/repository/UserRepository.class
+group/channel_pizza/repository/OrderRepository.class
+group/channel_pizza/ChannelPizzaApplication.class
+group/channel_pizza/rest/ProductController.class
+group/channel_pizza/model/UserDTO.class
