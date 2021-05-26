@@ -23,8 +23,8 @@
             </div>
             <div class="row border-top border-bottom">
                 <div class="row main align-items-left">
-                    <div class="col">
-                        Total:
+                    <div class="col-2">
+                        Total: 
                     </div>
                     <div class="col">
                     $ {{total}}
