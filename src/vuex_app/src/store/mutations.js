@@ -3,6 +3,7 @@
  * @module
  * @name Vuex - Setters
  * @type {object}
+ * 
  * @mutator {array} SET_PRODUCTS=products Sets the state product list property.
  * @mutator {object} SET_PRODUCT=product Sets the state product property.
  * @mutator {object} ADD_TO_CART=product Sets the state product and also updates product's quantity. Takes into account that the same type object is in the cart. 

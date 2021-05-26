@@ -162,7 +162,6 @@ wrapper.setMethods({clear:mock_clear})
 wrapper.setMethods({redirect:mock_redirect})
 wrapper.setMethods({showAlert:mock_showAlert})
  await wrapper.find('#btcheckout').trigger('click'); 
- //await wrapper.vm.mocks.store.commit('usernull');
  await wrapper.vm.$nextTick();
  expect(mock_showAlert).toHaveBeenCalled()
 })

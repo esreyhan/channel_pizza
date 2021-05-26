@@ -1,6 +1,6 @@
 /**
  *The vuex 'getters' object.
- *@module
+ * @module
  * @name Vuex - Getters 
  * @type {object}
  * 

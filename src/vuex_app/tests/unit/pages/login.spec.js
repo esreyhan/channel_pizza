@@ -56,6 +56,7 @@ describe('Actions', () => {
             expect(wrapper.find('#username').element.value).toBe(username)
             expect(wrapper.find('#password').element.value).toBe(password)
         })
+        //redirect function is called upon successful login
         test('test with mocked redirect and signin', async () => {
             
            /* wrapper.setMethods({redirect:redirect_mock})
@@ -65,6 +66,8 @@ describe('Actions', () => {
             await wrapper.vm.$nextTick() 
             expect(redirect_mock).toHaveBeenCalled()
         })
+
+        // the incorrect login message is shown on the template 
         test('test with authorization failed ', async () => {
             const submit_mock = jest.fn()
             /* wrapper.setMethods({redirect:redirect_mock})

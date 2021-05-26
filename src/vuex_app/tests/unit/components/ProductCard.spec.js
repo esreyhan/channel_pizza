@@ -5,7 +5,11 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-
+/**
+ * Test class for ProductCard. Vue.js unit test are used. 
+ * It is checked whether the item is rendered and add to cart function is called 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 
 
 describe('ProductCard.vue', () => {
@@ -19,15 +23,7 @@ describe('ProductCard.vue', () => {
 
   const  store = new Vuex.Store({
           state,
-          /*
-          modules: {
-            auth: {
-              actions,
-              mutations,
-              getters: auth.getters,
-              namespaced: true
-            }npm
-          }*/
+
         });
         const title1 = "italian__"
         const price = 5
@@ -49,14 +45,14 @@ describe('ProductCard.vue', () => {
         
     expect(wrapper.isVueInstance()).toBeTruthy()
 }) 
-//values shown by product card is tested in parent element, here is tested again
+//values are shown by the product cart or not 
 test('item is rendered by the vuex store', () => {
     //title 1
     expect(wrapper.text()).toContain(title1)
 
     // price
     expect(wrapper.text()).toContain(price)
-    //descriotion is rendered 
+    //description is rendered 
     expect(wrapper.text()).toContain(description)
     // single image is rendered
     const img = wrapper.findAll('img');

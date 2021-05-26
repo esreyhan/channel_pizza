@@ -2,6 +2,13 @@ import {mount, shallowMount} from '@vue/test-utils'
 import Product from '@/pages/product.vue'
 import {createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
+
+/**
+ * Test class for Product page. Vue.js unit test are used. 
+ * It is checked whether the product information is get from vuex store and addtocart button functions.  
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 const title1 = "italian__"
@@ -20,15 +27,7 @@ describe('Product.vue', () => {
   const  store = new Vuex.Store({
           state,
           actions,
-          /*
-          modules: {
-            auth: {
-              actions,
-              mutations,
-              getters: auth.getters,
-              namespaced: true
-            }
-          }*/
+      
         });
 
   const wrapper = mount(Product, {

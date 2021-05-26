@@ -1,6 +1,10 @@
 import {mount, shallowMount} from '@vue/test-utils'
 import Home from '@/pages/Home.vue'
-
+/**
+ * Test class for Home page. Vue.js unit test are used. 
+ * The vue instance is tested. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 describe('Minicart.vue', () => {
     const wrapper = mount(Home, {
 

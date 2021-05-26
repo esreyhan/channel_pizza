@@ -4,7 +4,11 @@ import {createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex)
-
+/**
+ * Test class for OrderConfirmation page. Vue.js unit test are used. 
+ * It is checked whether the order is rendered and its features are shown correctly.
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 describe('Orderconfirmation.vue', () => {
   const title1 = "italian__";
   const title2 = "local___";

@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +27,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 import org.mockito.BDDMockito;
@@ -35,6 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import group.channel_pizza.model.User;
 import group.channel_pizza.model.UserDTO;
 import group.channel_pizza.repository.UserRepository;
+import group.channel_pizza.service.UserService;
 
 /**
  * The class is for integration tests with mock MVC structure. 
@@ -45,13 +50,15 @@ import group.channel_pizza.repository.UserRepository;
  * @author Enis Sinan Reyhan
  *
  */
-
+@EnableAutoConfiguration(exclude = EmbeddedMongoAutoConfiguration.class)
+@ExtendWith(SpringExtension.class)
 @AutoConfigureJsonTesters
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserIntegrationTests {
 
-
+	@Autowired
+	private UserService userservice;
 	
 	@MockBean
 	private UserRepository userrepository;

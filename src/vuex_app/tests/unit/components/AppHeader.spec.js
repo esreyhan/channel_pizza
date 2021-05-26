@@ -36,9 +36,9 @@ describe('Appheader.vue', () => {
          localVue
         });
     }
-    /**
-     * Test method: Method checks whether a vue instance is created or not
-     */
+    
+     //Test method: Method checks whether a vue instance is created or not
+    
     test('is a vue instance', () => {
         const wrapper = factory($store)
         
