@@ -67,13 +67,28 @@
 
 <script>
 
+
+import axios from 'axios'
+import {mapActions} from 'vuex'
+import {mapState} from 'vuex'
+
 /** 
  * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
  * This is a page for registration.
  */
-import axios from 'axios'
-import {mapActions} from 'vuex'
-import {mapState} from 'vuex'
+
+/**
+ * @vue-data {String} code - postcode input
+ * @vue-data {String} region - region input
+ * @vue-data {String} country - country input
+ * @vue-data {array} countryData - information get from postCodeSearch method through web service regarding country for autocomplete
+ * @vue-data {array} regionData - information get from postCodeSearch method through web service regarding region for autocomplete
+ * @vue-data {String} address_line - adress line input
+ * @vue-data {String} firstname - firstname input
+ * @vue-data {String} lastname - lastname input
+ * @vue-data {String} form - the form data which combines all data provided by the user 
+ * 
+ */
 export default  {
 
     
@@ -98,17 +113,16 @@ export default  {
           address:null,
           fullname:null
           
-        },
-        simpleDialog : false
+        }
 
         }
        
 
     },
-   /**
-    * User information is kept in vuex store. As the page is for registration, auth module is mapped. 
-    */
+   
     computed: {
+    
+    
         ...mapState({
         authorized: state => state.auth.user
       
@@ -117,7 +131,7 @@ export default  {
     methods: {
     /**
      * class parameters countryDta and regionData are set by the method, if the rest service call is successful.
-     * @param {string} code - postcode information for api call
+     * 
      */
     postCodeSearch: function() {
        
@@ -136,15 +150,14 @@ export default  {
        console.log(error)
  })
       },
-/**
- * Register action in vuex store is mapped which is triggerred upon submit and successful username check. 
- */
+
       ...mapActions({
          register: 'auth/register'
       
     }),
     /**
      *  The alert for the missing fields. 
+     * 
      */ 
   showAlert() {
     const options = {title: 'Missing Fields', size: 'sm'}
@@ -163,6 +176,7 @@ export default  {
   },
 /**
  * The alert for succcessful login. User is redirected to menu page. 
+ * 
  */
   showSuccessAlert() {
        const options = {title: 'Success', size: 'sm'}
@@ -174,6 +188,7 @@ export default  {
   },
   /**
    * The user information in the form is checked first. if the username exists, an alert is shown, otherwise, submit method is called. 
+   * 
    */
   async userCheck () {
       
@@ -200,6 +215,7 @@ export default  {
 /**
  * The register action of the auth module of vuex store is called finally, upon all checks. 
  * If the registration is successful, the alert is shown. 
+ * 
  */
        async submit(){ 
           console.log("submit button")

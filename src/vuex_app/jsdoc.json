@@ -1,0 +1,16 @@
+{
+    "source": {
+      "include": [ "src/" ],
+      "exclude": [ "src/router" ],
+      "includePattern": "\\.(vue|js)$"
+    },
+    "opts": {
+      "encoding": "utf8",
+      "destination": "./docs/",
+      "recurse": true,
+      "verbose": true
+    },
+    "plugins": [
+        "node_modules/jsdoc-vuejs"
+      ]
+  }

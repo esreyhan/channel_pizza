@@ -15,7 +15,14 @@
 <script>
 
 /**
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
  * This is a separate page for the details of the product. 
+ */
+
+/**
+ * @vue-data {Number}quantity - 1 is returned by vue instance
+ * @vue-prop {String} id - product id is passed from parent component ProductList
+ * @vue-computed {object} product - product object is returned from vuex store
  */
 export default {
     
@@ -30,17 +37,14 @@ export default {
  * The property id is transferred from product list page. 
  */
 props:['id'],
-/**
- * The product with the respective id is set in vuex store.
- */
+
+ //The product with the respective id is set in vuex store.
+ 
 mounted() {
     this.$store.dispatch('getProduct',this.id)
 },
 computed: {
-/**
- * The product details of the respective product is get. 
- * @return {object} product - the details of the product are set as features. 
- */
+
     product() {
         return this.$store.state.product;
     }
@@ -48,8 +52,7 @@ computed: {
 }, methods:{
 /**
  * The products are added to cart in vuex store with the called action upon submit button: addProductToCart
- * @param {object} product
- * @param {int} quantity
+ * 
  */
         addToCart(){
             this.$store.dispatch('addProductToCart',{

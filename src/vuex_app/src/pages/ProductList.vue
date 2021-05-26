@@ -36,24 +36,33 @@
  
 </template>
 <script>
-/**
- * This is a page where products are listed. ProductCard custom component is used for listing the products.
- */
+
 import ProductCard from "../components/ProductCard"
+
+/**
+ * 
+ * This is a page where products are listed. ProductCard custom component is used for listing the products.
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * @vue-computed {array} products - product list is get from vuex store. 
+ */
 export default {
+    /**
+     * 
+     * ProductCard component is used as to list products
+     * @vue-computed {Object} products - return list of products object
+     *
+     */
     components: {
        ProductCard
     },
-/**
- * Products are get from rest service with an axios call througj getProducts action in mount stage and kept in vuex store. 
- */
+
+//The product list is acquired from web service through vuex store
+ 
     mounted() {
     this.$store.dispatch('getProducts')
 },
 
-/**
- * product list is get from vuex store. 
- */
+
     computed : {
         products () {
             return this.$store.state.products;

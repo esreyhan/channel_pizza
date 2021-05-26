@@ -44,13 +44,22 @@
     </div>
 </template>
 <script>
-/**
- * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
- * 
- * The component shows items added to the cart. 
- */
+
 import {mapState} from 'vuex'
 import {mapActions} from 'vuex'
+/**
+ * The component shows items added to the cart. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
+/** 
+ * @vue-data {boolean} hover - boolean object for hover
+ * @vue-data {order} order - empty objet is set for data binding in the form
+ * @vue-computed {array} cart - added product list is returned from vuex state
+ * @vue-computed {Number} cartItemCount - total number of items is returned from vuex getter
+ * @vue-computed {Number} total - total price is returned from vuex getter
+ * @vue-data {String} userId - Userid is mapped with vuex store
+ * @vue-data {String} cart - Cart vuex object is mapped 
+ */
 export default {
      name: 'Product Card',
      
@@ -66,40 +75,26 @@ export default {
         }
       }
       },
-   /**
-    * Returns the cart from the vuex state 
-    */
+
     computed: { cart() {
           return this.$store.state.cart;
       }, 
-     /**
-      *  Returns the total item count from vuex store
-      */ 
+ 
       cartItemCount() {
       return this.$store.getters.cartItemCount;
     },
-    /**
-     * Total price is returned from vuex store 
-     */
+  
     total () {
         return this.$store.getters.total
     },
-    /**
-     * userid and cart is mapped in vuex store for use in the template
-     */
+   
     ...mapState({
         userid: state => state.auth.id,
         cart: state => state.cart
       
       })
     },
-    /**
-     * addOrder action in vuex is called upon click of checkout link 
-     */
-    /**
-     * cartClear action in vuex is called upon click of clear basket button
-     */
-
+ 
     methods :{ 
         ...mapActions({
            regOrder: 'addOrder',

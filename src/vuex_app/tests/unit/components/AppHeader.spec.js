@@ -10,7 +10,10 @@ localVue.use(Vuex)
 const store = new Vuex.Store()
 
 
-
+/**
+ * Test class for appheader. Vue.js unit test are used. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 describe('Appheader.vue', () => {
     const $store = {
         state:{
@@ -33,11 +36,18 @@ describe('Appheader.vue', () => {
          localVue
         });
     }
+    /**
+     * Test method: Method checks whether a vue instance is created or not
+     */
     test('is a vue instance', () => {
         const wrapper = factory($store)
         
         expect(wrapper.isVueInstance()).toBeTruthy()
     }),
+
+    
+    //Test method: Verifies whether the username and logout tab is rendered or not when user is present in vuex store. 
+     
     test('renders the username and logout tab', () =>{
         const user = 'user'
         const $store = {
@@ -57,6 +67,10 @@ describe('Appheader.vue', () => {
     expect(wrapper.html()).toContain(user&'logout')
     }
     );
+
+    
+     //test method: checks whether login and register tabs are rendered when the user information is not present in vuex store. 
+     
     test('renders the login and register tabs', () =>{
         const user = 'user'
         const $store = {
@@ -75,7 +89,9 @@ describe('Appheader.vue', () => {
     expect(wrapper.html()).toContain('login'&'register')
     }
     );
-    test('calls the logout function when the logout function is clicked ', () =>{
+    
+    
+    test('calls the logout function when the logout button is clicked ', () =>{
         const user = 'user'
         const $store = {
             state:{
@@ -99,6 +115,10 @@ describe('Appheader.vue', () => {
     expect(logout).toHaveBeenCalled()
     }
     );
+    /**
+     * Test method
+     * 
+     */
     test('calls the auth module action signout when logout is called', () => {
        
 

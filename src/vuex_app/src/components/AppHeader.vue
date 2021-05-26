@@ -42,13 +42,24 @@
 </template>
 
 <script>
+
+
 import { mapGetters} from 'vuex'
 import { mapActions} from 'vuex'
+/**
+ *Header component for the application. Vuex store is used both for authentication and product cart information
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * @vue-event {none} logout - vuex signout method is called 
+ * @vue-computed {array} cart - cart is returned as list of products 
+ * @vue-computed {String} authenticated - user id is get from vuex store getter authenticated 
+ * @vue-computed {String} user - username is get from vuex store getter user
+ */ 
 export default {
   computed : {
     cart() {
       return this.$store.cart;
     },
+   
     ...mapGetters ({
       authenticated:'auth/authenticated',
       user:'auth/user'

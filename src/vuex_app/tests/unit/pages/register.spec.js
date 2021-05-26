@@ -5,8 +5,6 @@ import Vuex from 'vuex'
 import auth from '@/store/auth'
 import { _ } from 'core-js'
 import axios from 'axios'
-//import 'v-slim-dialog/dist/v-slim-dialog.css'
-//import SlimDialog from 'v-slim-dialog'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -14,6 +12,10 @@ const store = new Vuex.Store()
 
 let url = ''
 let body = {}
+
+/**
+ * mock axios method
+ */
 jest.mock('axios',() => ({
   
     get: (_url) =>{
@@ -143,40 +145,14 @@ wrapper = mount(Register, {
 });
 
 test('alert is triggered when form data is full but the username exists', async () => {
-    /*const wrapper = shallowMount(Register, {
-        data() {
-            return {
-                code: 'a',
-                  region:'b',
-                  country:'c',
-                  adress_line:'a b c d',
-                  firstname: 'a',
-                  lastname:'b',
-                  form:{
-                    username:'def',
-                    password:'y',
-                    address:null,
-                    fullname:'a b'
-                    
-                  }
-                }
-            
-          },
-        
-        mocks : {
-        $store
-        },
-        stubs: ['router-link', 'router-view','vue-bootstrap-typeahead']
-     
-    });*/
-    //if(!!this.adress_line &&!!this.firstname && !!this.form.username && !!this.form.password&&!!this.lastname&&!!this.code &&!!this.country &&!!this.region) {
-
+   
     wrapper.setData({code: 'a'});
     wrapper.setData({ country:'c'});
     wrapper.setData({adress_line:'a b c d'});
     wrapper.setData({firstname: 'a'});
     wrapper.setData({lastname:'b'});
     wrapper.setData({ form:{
+        //when username 'def is called in mock axios, a username object is returned
         username:'def',
         password:'y',
         address:null,
@@ -205,7 +181,8 @@ test('fullname and adress is fulfilled and submit call is made', async () => {
     wrapper.setData({firstname: 'a'});
     wrapper.setData({lastname:'b'});
     wrapper.setData({ form:{
-        username:'def',
+        //when 'abc' is passed on axios for username call,  object is not returned 
+        username:'abc',
         password:'y',
         address:null,
         fullname:null

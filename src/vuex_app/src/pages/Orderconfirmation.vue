@@ -36,16 +36,23 @@
     </div>
 </template>
 <script>
+/**
+* The page is for confirmation of the order. Cart and total order information is shown on the page. cart and total price is acquired from vuex store. 
+* @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+* @vue-computed {Object} cart - cart is return from vuex store
+* @vue-computed {double} total
+*/
 export default {
 
-    /**
-     * Cart and total order information is shown on the page. cart and total price is acquired from vuex store. 
-     */
-     name: 'Modal',
    
-    computed: { cart() {
+     name: 'Order Confirmation',
+
+    computed: { 
+  
+        cart() {
           return this.$store.state.cart;
-      }, 
+      },
+      
     total () {
         return this.$store.getters.total
     }

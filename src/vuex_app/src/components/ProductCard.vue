@@ -20,20 +20,22 @@
 </template>
 <script>
 /**
+ * The component shows product details. The component's parent component is ProductList.  
+ * 
  * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
  * 
- * The component shows product details. The component's parent component is ProductList.  
+ * @vue-prop {object} product - product object is passed from parent component ProductList
  */
 export default {
 
     props:["product"], 
 
+   
+    methods:{
     /**
      * addToCart method is called when Add To Chart link is clicked. 
-     * @param {product} product - The product object
-     * @param {int} quantity - quantity for the product 
+     * 
      */
-    methods:{
         addToCart(){
             this.$store.dispatch('addProductToCart',{
                 product: this.product,

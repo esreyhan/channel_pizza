@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Register.vue</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Register.vue</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    
+&lt;div class="container register-form">
+            &lt;div class="form">
+                &lt;div class="note">
+                    
+                    &lt;p>Registration Form&lt;/p>
+                &lt;/div>
+                &lt;form @submit.prevent="submit">
+                &lt;div class="form-content">
+                    &lt;div class="row">
+                        &lt;div class="col-md-6">
+                            &lt;div class="form-group">
+                                &lt;input id="username" type="text" class="form-control" placeholder="Your UserName *" value="" v-model="form.username"/>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div class="col-md-6">
+                            &lt;div class="form-group">
+                                &lt;input id="password" type="text" class="form-control" placeholder="Your Password *" value="" v-model = "form.password"/>
+                            &lt;/div>
+                           
+                        &lt;/div>
+                        &lt;div class="row">
+                        &lt;div class="col-md-6">
+                            &lt;div class="form-group">
+                                &lt;input id="firstname" type="text" class="form-control" placeholder="First Name *" value="" v-model="firstname"/>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div class="col-md-6">
+                            &lt;div class="form-group">
+                                &lt;input id="lastname" type="text" class="form-control" placeholder="Last Name *" value="" v-model = "lastname"/>
+                            &lt;/div>   
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div class="row"> &lt;/div>
+                    &lt;div class="note"> Adress Information &lt;/div>
+                        &lt;div class="col-md-6">
+                            &lt;div class="form-group">
+                                &lt;input id="code" autocomplete = "off" v-model="code" type="text" class="form-control" placeholder="Post Code *" @blur="postCodeSearch"/>
+                            &lt;/div>
+                            &lt;div class="form-group" style="margin:10% 25">
+                                &lt;vue-bootstrap-typeahead id="country" placeholder="Country" v-model="country" :data='countryData'/>
+
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div class="col-md-6">
+                            &lt;div  style="margin:10% 25">
+                                &lt;vue-bootstrap-typeahead id="region" :data='regionData' v-model="region" placeholder="Region"/>
+                            &lt;/div>
+                            &lt;div class="form-group">
+                                &lt;input type="text" id= "address_line" class="form-control" placeholder="Adress Line 1" value="" v-model="adress_line"/>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div class="row"> 
+                        
+                    &lt;/div>
+
+                    &lt;button type="button" class="btnSubmit" @click="userCheck()">Submit&lt;/button>
+                &lt;/div>
+                &lt;/form>
+            &lt;/div>
+        &lt;/div>
+
+
+&lt;/template>
+
+&lt;script>
+
+
+import axios from 'axios'
+import {mapActions} from 'vuex'
+import {mapState} from 'vuex'
+
+/** 
+ * @author Enis Sinan Reyhan &lt;enissinanreyhan@gmail.com>
+ * This is a page for registration.
+ */
+
+/**
+ * @vue-data {String} code - postcode input
+ * @vue-data {String} region - region input
+ * @vue-data {String} country - country input
+ * @vue-data {array} countryData - information get from postCodeSearch method through web service regarding country for autocomplete
+ * @vue-data {array} regionData - information get from postCodeSearch method through web service regarding region for autocomplete
+ * @vue-data {String} address_line - adress line input
+ * @vue-data {String} firstname - firstname input
+ * @vue-data {String} lastname - lastname input
+ * @vue-data {String} form - the form data which combines all data provided by the user 
+ * 
+ */
+export default  {
+
+    
+
+    data() {
+
+        return {
+
+        code: '',
+        region:'',
+        country:'',
+        postcodes:[],
+        countryData:[],
+        regionData:[],
+        adress_line:'',
+        firstname:'',
+        lastname:'',
+
+        form:{
+          username:null,
+          password:null,
+          address:null,
+          fullname:null
+          
+        }
+
+        }
+       
+
+    },
+   
+    computed: {
+    
+    
+        ...mapState({
+        authorized: state => state.auth.user
+      
+      })
+      },
+    methods: {
+    /**
+     * class parameters countryDta and regionData are set by the method, if the rest service call is successful.
+     * 
+     */
+    postCodeSearch: function() {
+       
+   const url = "https://api.postcodes.io/postcodes/" + this.code
+  
+      axios
+      .get(url)
+      .then(response => {
+        
+        this.postcodes[0] = response.data.result;
+        
+        this.countryData.push(this.postcodes[0].country);
+        this.regionData.push(this.postcodes[0].region)
+      
+      }).catch(error=>{
+       console.log(error)
+ })
+      },
+
+      ...mapActions({
+         register: 'auth/register'
+      
+    }),
+    /**
+     *  The alert for the missing fields. 
+     * 
+     */ 
+  showAlert() {
+    const options = {title: 'Missing Fields', size: 'sm'}
+    this.$dialogs.alert('Please fulfill all fields', options)
+    
+
+  },
+/**
+ * The alert for the existing username
+ */
+   showAlert2() {
+    const options = {title: 'Username', size: 'sm'}
+    this.$dialogs.alert('Username Exists', options)
+    
+
+  },
+/**
+ * The alert for succcessful login. User is redirected to menu page. 
+ * 
+ */
+  showSuccessAlert() {
+       const options = {title: 'Success', size: 'sm'}
+    this.$dialogs.alert('You have successfully signed up', options).then(() =>{
+                    this.$router.replace({
+                name: 'ProductList'
+              })
+                })
+  },
+  /**
+   * The user information in the form is checked first. if the username exists, an alert is shown, otherwise, submit method is called. 
+   * 
+   */
+  async userCheck () {
+      
+       if(!!this.adress_line &amp;&amp;!!this.firstname &amp;&amp; !!this.form.username &amp;&amp; !!this.form.password&amp;&amp;!!this.lastname&amp;&amp;!!this.code &amp;&amp;!!this.country &amp;&amp;!!this.region) {
+        
+        await axios.get("http://localhost:8080/api/messages/findUserByUsername/" + this.form.username).then((response)=>{
+      //Alert for existing username. 
+       if(response.data) {
+            this.showAlert2()
+         
+            
+        } else {
+            this.submit();
+        }
+       }).catch(error => {
+           console.log(error)
+        //Alert for missing fields. 
+       }) }else {
+        this.showAlert()
+       }
+       
+    },
+
+/**
+ * The register action of the auth module of vuex store is called finally, upon all checks. 
+ * If the registration is successful, the alert is shown. 
+ * 
+ */
+       async submit(){ 
+          console.log("submit button")
+            this.form.address = this.code + " " + this.country + " " + this.region + " " + this.adress_line
+            this.form.fullname = this.firstname + " " + this.lastname
+         await this.register(this.form).then(() => {
+             
+             this.showSuccessAlert();
+                
+            }).catch(error => {
+                console.log("catch" + error.message)
+            }) } 
+            
+              
+            
+          },
+         
+    
+}
+
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AppHeader.html">AppHeader</a></li><li><a href="module-Home.html">Home</a></li><li><a href="module-login.html">login</a></li><li><a href="module-Minicart.html">Minicart</a></li><li><a href="module-Orderconfirmation.html">Orderconfirmation</a></li><li><a href="module-Product.html">Product</a></li><li><a href="module-ProductCard.html">ProductCard</a></li><li><a href="module-ProductList.html">ProductList</a></li><li><a href="module-Register.html">Register</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addOrder">addOrder</a></li><li><a href="global.html#addProductToCart">addProductToCart</a></li><li><a href="global.html#cartClear">cartClear</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProducts">getProducts</a></li><li><a href="global.html#Getters">Getters</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed May 26 2021 14:38:47 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

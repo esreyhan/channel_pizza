@@ -5,7 +5,12 @@ import Vuex from 'vuex'
 import {mapState} from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex)
-
+/**
+ * Test class for MiniCart. Vue.js unit test are used. 
+ * Two products are added in the vuex store as given. 
+ * The test is applied for both cases where user information is present and is not present in the vuex store.  
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ */
 describe('Minicart.vue', () => {
   const title1 = "italian__";
   const title2 = "local___";
@@ -66,18 +71,24 @@ const state = {
         localVue
       })
     }
+//order registration axios function is mocked as to return data. 
     const regOrder_mock = async () => { return new Promise((response) => {
         const mock_data={data:{"id":"ab2"}}
         response(mock_data);
   
         })
       }
+
+//mocked function is set in wraopper
 const wrapper = factory(state)
 wrapper.setMethods({regOrder:regOrder_mock})
+//clear function is mocked
 const mock_clear = jest.fn()
 wrapper.setMethods({clear:mock_clear})
+//redirect function is mocked
 const mock_redirect = jest.fn()
 wrapper.setMethods({redirect:mock_redirect})
+//show alert function is mocked
 const mock_showAlert= jest.fn()
 wrapper.setMethods({showAlert:mock_showAlert})
 
@@ -141,8 +152,8 @@ test ('redirect function is called as the order is successful',  () =>{
 test('Alert function is triggered when the userid is null', async () => {
     const state = {
         cart: [{"product": {id:"a1",title:title1,"image": "neapolitan.jpg", "price":price1}, "quantity":quantity1},{"product": {id:"a3",title:title2,type:"local","image": "neapolitan.jpg", "price":price2}, "quantity":quantity2}],
-        authenticated:'ab2',
-        user:'user',
+        authenticated:'',
+        user:'',
         userid:''
     };
 const wrapper = factory(state)

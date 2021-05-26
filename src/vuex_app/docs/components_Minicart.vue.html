@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Minicart.vue</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Minicart.vue</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+ &lt;div class="card">
+    &lt;div class="row">
+        &lt;div class="col-md cart">
+            &lt;div class="title">
+                &lt;div class="row">
+                    &lt;div class="col-4">
+                        &lt;h4>&lt;b>Shopping Cart&lt;/b>&lt;/h4>
+                    &lt;/div>
+                    &lt;div class="col-6 align-self-center text-right text-muted">  &lt;/div>
+                    &lt;div  @mouseover="hover = true" @click="clear()" id="hover" class="col-2 align-self-center text-right text-muted"> Clear Basket &lt;/div>
+                    
+                &lt;/div>
+            &lt;/div>
+
+            &lt;div v-for="item in cart" :key="item.product.id" class="row border-top border-bottom">
+                &lt;div class="row main align-items-center">
+                    &lt;div class="col-2">&lt;img class="img-fluid" :src="require('../assets/' +item.product.image)">&lt;/div>
+                    &lt;div class="col-6">
+                        &lt;div class="row text-muted">{{item.product.title}}&lt;/div>
+                        &lt;div class="row">{{item.product.description}}&lt;/div>
+                    &lt;/div>
+                    &lt;div class="col" style="margin-left:40px"> {{item.quantity}} &lt;/div>
+                    &lt;div class="col"> $ {{item.product.price}} &lt;span class="close">&amp;#10005;&lt;/span>&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+        &lt;/div> 
+
+        &lt;div class="col-md-4 summary">
+            &lt;div>
+                &lt;h5>&lt;b>Summary&lt;/b>&lt;/h5>
+            &lt;/div>
+            &lt;hr>
+            &lt;div class="row">
+                &lt;div class="col" style="padding-left:0;">Total Items &lt;/div>
+                &lt;div class="col text-right">{{cartItemCount}}&lt;/div>
+            &lt;/div>
+            &lt;div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                &lt;div class="col">TOTAL PRICE&lt;/div>
+                &lt;div class="col text-right"> $ {{total}}&lt;/div>
+            &lt;/div> &lt;router-link :to="{name:'ProductList'}"> &lt;button class="btn">CONTINUE SHOPPING&lt;/button> &lt;/router-link> &lt;button id="btcheckout" class="btn"  @click="checkOut()">CHECKOUT&lt;/button> 
+        &lt;/div>
+    &lt;/div>
+&lt;/template>
+&lt;script>
+
+import {mapState} from 'vuex'
+import {mapActions} from 'vuex'
+/**
+ * The component shows items added to the cart. 
+ * @author Enis Sinan Reyhan &lt;enissinanreyhan@gmail.com>
+ */
+/** 
+ * @vue-data {boolean} hover - boolean object for hover
+ * @vue-data {order} order - empty objet is set for data binding in the form
+ * @vue-computed {array} cart - added product list is returned from vuex state
+ * @vue-computed {Number} cartItemCount - total number of items is returned from vuex getter
+ * @vue-computed {Number} total - total price is returned from vuex getter
+ * @vue-data {String} userId - Userid is mapped with vuex store
+ * @vue-data {String} cart - Cart vuex object is mapped 
+ */
+export default {
+     name: 'Product Card',
+     
+      data () {
+          return {
+              hover: false,
+        order:{
+          oderitems:[],
+          quantity:[],
+          total:null,
+          userid:''
+          
+        }
+      }
+      },
+
+    computed: { cart() {
+          return this.$store.state.cart;
+      }, 
+ 
+      cartItemCount() {
+      return this.$store.getters.cartItemCount;
+    },
+  
+    total () {
+        return this.$store.getters.total
+    },
+   
+    ...mapState({
+        userid: state => state.auth.id,
+        cart: state => state.cart
+      
+      })
+    },
+ 
+    methods :{ 
+        ...mapActions({
+           regOrder: 'addOrder',
+           clear: 'cartClear'
+        }),
+
+        /**
+     * redirect method is called upon click of continue shopping button
+     */
+        redirect() {
+             
+          this.$router.replace({
+                name: 'Confirmation Page'
+              }) 
+            
+        },
+
+    /**
+     * The signin is a requirement for adding the order. 
+     * This alert is called when the user information is not present in vuex store, upon click of checkout link and checkOut method. 
+     */   
+        
+         showAlert() {
+    const options = {title: 'Sign In Required', size: 'sm'}
+    this.$dialogs.alert('Please sign in or register to proceed to the checkout', options)
+    .then(res => {
+      console.log(res) // {ok: true|false|undefined}
+    })
+  },
+
+  /**
+   * checkOut method is called upon click of checkout link. 
+   * Orderitems and quantity arrays are organized respectively with items and their quantities and order object is prepared for axios call. 
+   * redirect method is called upon successful axios call made in vuex action: addOrder through method regOrder. 
+   */
+       async checkOut(){
+            let orderitems = []
+            let quantity = []
+            var i;
+            for(i=0;i&lt;this.cart.length;i++) {
+                orderitems.push(this.cart[i].product.id)
+                quantity.push(this.cart[i].quantity)
+            }
+            
+       
+           
+            
+           this.order.orderitems= orderitems;
+           this.order.quantity = quantity;
+            this.order.total= this.total;
+            this.order.userid = this.userid
+            
+            if(this.userid){
+            await this.regOrder(this.order).then(() => {
+                    this.redirect()}).catch(error => {
+     console.log(error.response.data.error)
+            }) } else {
+                    this.showAlert()
+             }
+  
+        
+
+        },
+
+
+    }
+      
+}
+
+&lt;/script>
+&lt;style scoped>
+
+body {
+    background: #ddd;
+    min-height: 100vh;
+    vertical-align: middle;
+    display: flex;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold
+}
+
+.title {
+    margin-bottom: 5vh
+}
+#hover:hover {
+text-decoration: underline;
+}
+
+.card {
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent
+}
+
+@media(max-width:767px) {
+    .card {
+        margin: 3vh auto
+    }
+}
+
+.cart {
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem
+}
+
+@media(max-width:767px) {
+    .cart {
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem
+    }
+}
+
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65)
+}
+
+@media(max-width:767px) {
+    .summary {
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 1rem
+    }
+}
+
+.summary .col-2 {
+    padding: 0
+}
+
+.summary .col-10 {
+    padding: 0
+}
+
+.row {
+    margin: 0
+}
+
+.title b {
+    font-size: 1.5rem
+}
+
+.main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%
+}
+
+.col-2,
+.col {
+    padding: 0 1vh
+}
+
+a {
+    padding: 0 1vh
+}
+
+.close {
+    margin-left: auto;
+    font-size: 0.7rem
+}
+
+img {
+    width: 3.5rem
+}
+
+.back-to-shop {
+    margin-top: 4.5rem
+}
+
+h5 {
+    margin-top: 4vh
+}
+
+hr {
+    margin-top: 1.25rem
+}
+
+form {
+    padding: 2vh 0
+}
+
+select {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+.btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none
+}
+
+.btn:hover {
+    color: white
+}
+
+a {
+    color: black
+}
+
+a:hover {
+    color: black;
+    text-decoration: none
+}
+
+#code {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center
+}
+&lt;/style></code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AppHeader.html">AppHeader</a></li><li><a href="module-Home.html">Home</a></li><li><a href="module-login.html">login</a></li><li><a href="module-Minicart.html">Minicart</a></li><li><a href="module-Orderconfirmation.html">Orderconfirmation</a></li><li><a href="module-Product.html">Product</a></li><li><a href="module-ProductCard.html">ProductCard</a></li><li><a href="module-ProductList.html">ProductList</a></li><li><a href="module-Register.html">Register</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addOrder">addOrder</a></li><li><a href="global.html#addProductToCart">addProductToCart</a></li><li><a href="global.html#cartClear">cartClear</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProducts">getProducts</a></li><li><a href="global.html#Getters">Getters</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed May 26 2021 14:38:47 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
