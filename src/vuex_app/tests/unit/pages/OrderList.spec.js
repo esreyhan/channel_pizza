@@ -7,7 +7,7 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 /**
- * Test class for ProductAdmin page. Vue.js unit test are used. 
+ * Test class for Orderlist page. Vue.js unit test are used. 
  * It is checked whether product items are rendered correctly. 
  * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
  */
@@ -48,11 +48,11 @@ test('is a vue instance', () => {
     
     expect(wrapper.isVueInstance()).toBeTruthy()
 }),
-test('Products are rendered by the vuex getter', () => {
+test('Orders are rendered', () => {
 
     expect(wrapper.vm.orders).toHaveLength(2)
 })
-test('Products are rendered by the vuex getter/titles are checked for each type', () => {
+test('Respective fields are rendered', () => {
     //random chosen within different features 
     
     expect(wrapper.find('#orderrow')).toBeTruthy()

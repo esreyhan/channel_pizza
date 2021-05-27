@@ -1,0 +1,21 @@
+--- 
+services: 
+  frontend: 
+    build: ./src/vuex_app
+    external_links: 
+      - spring
+    ports: 
+      - "3000:3000"
+  mongo: 
+    image: mongo
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - "./init-mongo.js:/docker-entryponint-initdb.d/init-mongo.js:ro"
+      - "./usr/local/var/mongodb"
+  spring: 
+    build: "."
+    external_links: 
+      - mongo
+    ports: 
+      - "8080:8080"

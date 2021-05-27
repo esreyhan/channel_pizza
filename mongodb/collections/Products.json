@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "609c35682074d165f9c53bdf"
+  },
+  "title": "Coke Light",
+  "description": "Coca Cola Light",
+  "image": "cokelight.jpg",
+  "price": 2,
+  "type": "beverage",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c36092074d165f9c53be0"
+  },
+  "title": "Neapolitan",
+  "description": " Thin Pizza with: (Buffalo) Mozzarella cheese, (San Marzano)Tomatoes and Basil ",
+  "image": "neapolitan.jpg",
+  "price": 4.8,
+  "type": "italian",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c36142074d165f9c53be1"
+  },
+  "title": "New York Style ",
+  "description": "Basic Thin Pizza with: Mozarella Chees and Tomatoes",
+  "image": "newyork.jpg",
+  "price": 4.3,
+  "type": "local",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c36232074d165f9c53be2"
+  },
+  "title": "Chicago/Deep-Dish Pizza",
+  "description": "Thick pizza with Cheese Tomatoes Meat: sausage, pepperoni Onions Mushrooms Bell peppers",
+  "image": "deep-dish-pizza.jpg",
+  "price": 4.1,
+  "type": "local",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c36332074d165f9c53be3"
+  },
+  "title": "Sicilian Pizza",
+  "description": "Square local italian pizza with Tomatoes, Strong cheeses (Sicilian toma), Onions, Anchovies, Herbs",
+  "image": "sicilian.jpg",
+  "price": 4.3,
+  "type": "italian",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c36422074d165f9c53be4"
+  },
+  "title": "Californian Pizza",
+  "description": "American pizza with Goat’s cheese, Tomato, Baby vegetables, Smoked salmon, Red onions, Pepperoni, BBQ chicken",
+  "image": "californian.jpg",
+  "price": 4.5,
+  "type": "local",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "609c364e2074d165f9c53be5"
+  },
+  "title": "Sparkling Water",
+  "description": "Pellegrino Sparkling Water",
+  "image": "sparkling.jpeg",
+  "price": 1.3,
+  "type": "beverage",
+  "_class": "group.channel_pizza.model.Item"
+},{
+  "_id": {
+    "$oid": "60a028b0e5fee168965d2bfe"
+  },
+  "title": "Detroit Pizza",
+  "description": "Thick pizza with Cheese Tomato sauce, Pepperoni,Mushrooms",
+  "image": "detroit.jpg",
+  "price": 4.3,
+  "type": "local",
+  "_class": "channelpizza.model.Item"
+},{
+  "_id": {
+    "$oid": "60a028f5e5fee168965d2bff"
+  },
+  "title": "St. Louis Pizza",
+  "description": "Thick pizza with Provel cheese (Combination of provolone, Swiss and white cheddar cheeses), Tomato sauce, Oregano and Bacon",
+  "image": "detroit.jpg",
+  "price": 4.4,
+  "type": "local",
+  "_class": "channelpizza.model.Item"
+},{
+  "_id": {
+    "$oid": "60a0294ee5fee168965d2c00"
+  },
+  "title": "Turkish Pizza",
+  "description": "Thick pizza with Feta cheese, Olives, Sun-dried tomatoes, Roasted red peppers",
+  "image": "turkish.jpg",
+  "price": 4,
+  "type": "local",
+  "_class": "channelpizza.model.Item"
+},{
+  "_id": {
+    "$oid": "60a0299ae5fee168965d2c01"
+  },
+  "title": "Coke",
+  "description": "Coca Cola",
+  "image": "cocacola.jpeg",
+  "price": 2,
+  "type": "beverage",
+  "_class": "channelpizza.model.Item"
+},{
+  "_id": {
+    "$oid": "60a02a8fe5fee168965d2c02"
+  },
+  "title": "Still Water",
+  "description": "Still Water: 250ml",
+  "image": "still.jpg",
+  "price": 2,
+  "type": "beverage",
+  "_class": "channelpizza.model.Item"
+}]

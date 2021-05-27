@@ -37,7 +37,15 @@
 </template>
 
 <script>
+
+
 import axios from 'axios'
+/**
+ * 
+ * This is a login page for user signin. Vuex store is used for keeping product and user information. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * @data {object}form - details regarding the product is included in the form object
+ */
   export default {
 
     data() {
@@ -55,12 +63,19 @@ import axios from 'axios'
     },
 
     methods: {
+
+      /**
+       * the product is sent to the backend via webserver 
+       */
       async submitProduct() {
 
-        await axios.post('http://localhost:8080/api/messages/addProduct',this.form).then(   
-          this.$router.replace({
+        await axios.post('http://localhost:8080/api/messages/addProduct',this.form).then (   
+          this.$store.dispatch('getProducts'),
+         this.$router.replace({
                 name: 'ProductsAdmin'
               })
+            
+
     
     ).catch((error) =>{console.log(error)})
     }

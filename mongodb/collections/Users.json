@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "60ae58f6c31e2673dd53e98b"
+  },
+  "username": "sinan",
+  "password": "12345",
+  "fullname": "enis sinan reyhan",
+  "address": "w21tt England London Westminister",
+  "_class": "group.channel_pizza.model.User"
+},{
+  "_id": {
+    "$oid": "60ae66b325e8ac150dbcb7b3"
+  },
+  "username": "admin",
+  "fullname": "enis sinan reyhan",
+  "address": "w21tt England London Westminister",
+  "_class": "group.channel_pizza.model.User",
+  "passwor": "12345"
+}]

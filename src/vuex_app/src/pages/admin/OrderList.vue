@@ -29,24 +29,30 @@
 </template>
 
 <script>
-/*
-getProducts (){   
-            axios.get('http://localhost:8080/api/messages/findAllOrders')
-.then(response =>{
-    this.orders =  response.data
-}).catch(error => {
-  console.log(error)
-})
-}
-},*/
+
 import axios from 'axios'
+/**
+ * 
+ * This is an admin page for lsiting products. Vuex store is used for keeping product and user information. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * @data {array}orders - orders are get from web service and kept in the data property
+ */
 export default {
     data(){
         return {
         orders: []
         }
     },
+
+/**
+ * 
+ */
 methods: {
+
+/**
+ * The product list is get from web service. 
+ * 
+ */
     async getProducts (){   
            await axios.get('http://localhost:8080/api/messages/findAllOrders')
 .then(response =>{

@@ -35,7 +35,15 @@
 
 </template>
 <script>
+
+
 import axios from 'axios'
+/**
+ * 
+ * This is an admin page for listing products. Vuex store is used for keeping product and user information. 
+ * @author Enis Sinan Reyhan <enissinanreyhan@gmail.com>
+ * @vue-computed {array} products - product list is get from vuex store. 
+ */
 export default {
  
       
@@ -54,7 +62,11 @@ export default {
         
     },
     methods : {
-   
+   /**
+    * The method make an axios call for deleting the product. 
+    * @param {String}id - id of the product to be deleted is returned
+    * @returns {void}
+    */
       async deleteProduct (id) {
       console.log("product" + id)
       
