@@ -1,9 +1,12 @@
 package group.channel_pizza.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import group.channel_pizza.model.Item;
 import group.channel_pizza.model.Order;
 import group.channel_pizza.repository.OrderRepository;
 /**
@@ -32,4 +35,8 @@ public class OrderService {
 		return orderrepository.save(order);
 	}
 	
+	public List<Order> getAllItems () {
+		return orderrepository.findAll();
+		}
+		
 }

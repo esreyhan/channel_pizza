@@ -2,6 +2,7 @@ package group.channel_pizza.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,6 +22,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -107,6 +109,52 @@ private JacksonTester<Order> jsonPizza;
 		assertThat(actualJsonRespont).isEqualToIgnoringWhitespace(expectedJsonResponse);	
 
 	
+	}
+	
+	/**
+	 * orderrepository.findAll() method is mocked with a list of two items. the list is returned from web service. 
+	 * @throws Exception
+	 */
+
+	@Test
+	public void getAllItems () throws Exception {
+		
+		//Given
+		String url = "http://localhost:8080/api/messages//findAllOrders";
+		List<Order> orders = new ArrayList<>();
+		Order order1 = new Order();
+		order1.setId ("1");
+		List<String> items = new ArrayList<>();
+		items.add("2");
+		items.add("3");
+		order1.setOrderitems(items);
+		List<Integer> quantities = new ArrayList<>();
+		quantities.add(2);
+		quantities.add(3);
+		order1.setQuantity(quantities);
+		
+		Order order2 = new Order();
+		order1.setId ("5");
+		List<String> items2 = new ArrayList<>();
+		items2.add("7");
+		items2.add("8");
+		order1.setOrderitems(items2);
+		List<Integer> quantities2 = new ArrayList<>();
+		quantities2.add(9);
+		quantities2.add(5);
+		order1.setQuantity(quantities2);
+		orders.add(order1);
+		orders.add(order2);
+		//When
+		Mockito.when(orderrepository.findAll()).thenReturn(orders);
+		MvcResult mvcResult = mockMvc.perform(get(url).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andReturn();
+		String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+		String expectedJsonResponse = objectMapper.writeValueAsString(orders);
+		
+		//Then
+		assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
+
+		
 	}
 	
 	

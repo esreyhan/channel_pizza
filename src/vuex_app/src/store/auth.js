@@ -18,12 +18,14 @@ export default {
      */
     state: {
         id: null,
-        user:null
+        user:null,
+        admin:null
 
     },
     /**
      * @getter {String} authenticated=id Returns id
      * @getter {String} user=user Return user
+     * @getter {String} admin=admin Return admnin
      */
     getters: {
 
@@ -33,6 +35,9 @@ export default {
 
         user (state) {
             return state.user
+        },
+        admin (state) {
+            return state.admin
         }
 
     },
@@ -40,6 +45,7 @@ export default {
      * @mutator {String} SET_ID=id Sets the user id
      * @mutator {String} SET_USER=username Sets the user 
      * @mutator {none} LOG_OUT=id,user clears the user and id information
+     * @mutator {String} SET_ADMIN =admin sets the admin property
      */
     
     mutations: {
@@ -49,9 +55,13 @@ export default {
         SET_USER(state,username){
             state.user = username
         },
+        SET_ADMIN(state,adminuser){
+            state.admin = adminuser
+        },
         LOG_OUT (state) {
             state.id = null,
             state.user = null
+            state.admin = null
         }
         
     },
@@ -69,6 +79,7 @@ export default {
             if (response.data != null){
                 commit('SET_USER',response.data.username)
                 commit('SET_ID',response.data.id)
+                commit('SET_ADMIN',response.data.admin)
             } 
             },  
 

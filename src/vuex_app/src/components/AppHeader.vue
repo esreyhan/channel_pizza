@@ -21,10 +21,11 @@
     <router-link style = "margin-left:20px" :to="{name:'Home'}" class="nav-item nav-link" active-class="active" exact>   Home </router-link>  
    <router-link style = "margin-left:20px" :to="{name:'ProductList'}" class="nav-item nav-link" active-class="active" exact>   Menu </router-link>
      <router-link style = "margin-left:20px" :to="{name:'Minicart'}" class="nav-item nav-link" active-class="active" exact> Cart </router-link>
-
+      
     <span style = "margin-left:20px" class="nav-item nav-link" active-class="active" exact v-if="authenticated">
     {{user}}
     </span>
+      <template  v-if="admin"><router-link style = "margin-left:20px" :to="{name:'ProductsAdmin'}" class="nav-item nav-link" active-class="active" exact> Product List</router-link> <router-link style = "margin-left:20px" :to="{name:'AddProduct'}" class="nav-item nav-link" active-class="active" exact> AddProduct </router-link> <router-link style = "margin-left:20px" :to="{name:'OrderList'}" class="nav-item nav-link" active-class="active" exact> OrderList</router-link></template>
     <a style = "margin-left:20px" v-if="authenticated" id="logOut" href="#" class="nav-item nav-link" active-class="active" exact @click="logout()"> Log Out </a>
     
   <template v-else>
@@ -32,6 +33,7 @@
    <router-link style = "margin-left:20px" :to="{name:'Register'}" class="nav-item nav-link" active-class="active" exact> Register </router-link>
 
   </template>
+  
 
  </div>
     </div>
@@ -62,7 +64,8 @@ export default {
    
     ...mapGetters ({
       authenticated:'auth/authenticated',
-      user:'auth/user'
+      user:'auth/user',
+      admin: 'auth/admin'
 
     })
 

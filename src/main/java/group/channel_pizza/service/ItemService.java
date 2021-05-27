@@ -60,4 +60,12 @@ public Optional<Item> getItem (String id){
 		
 	}
 
+/**
+ * <p> Get an item from id </p>
+ * @param id Item id from Controler class: 
+ * Please see:  {@link group.channel_pizza.rest.ProductController}
+ */
+public void deletItem (String id) {
+	itemrepository.deleteById(id);
+}
 }

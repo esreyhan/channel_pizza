@@ -17,6 +17,10 @@ import Login from "./pages/login.vue"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import ProductAdmin from './pages/admin/ProductAdmin.vue'
+import AddProduct from './pages/admin/AddProduct.vue'
+import OrderList from './pages/admin/OrderList.vue'
+
 import VueSimpleAlert from "vue-simple-alert";
 import 'v-slim-dialog/dist/v-slim-dialog.css'
 import SlimDialog from 'v-slim-dialog'
@@ -61,12 +65,45 @@ name:'Confirmation Page'},
 component:Register,
 name:'Register'
 
-}
+},
+{path:'/admin/product',
+component:ProductAdmin,
+name:'ProductsAdmin'
 
+},
+{path:'/admin/addproduct',
+component:AddProduct,
+name:'AddProduct'
+
+},
+{path:'/admin/orderlist',
+component:OrderList,
+name:'OrderList'
+
+}
 
 ]
 
 const router  = new VueRouter({routes:routes, mode:'history'})
+router.beforeEach((to, from, next) => {
+  //store.dispatch('auth/admin');
+  if (to.fullPath === '/admin/product') {
+    if (!store.state.auth.admin) {
+      next('/login');
+    }
+  }
+  if (to.fullPath === '/admin/addproduct') {
+    if (!store.state.auth.admin) {
+      next('/login')
+    }
+    if (to.fullPath === '/admin/orderlist') {
+      if (!store.state.auth.admin) {
+        next('/login')
+      }
+    }
+  }
+  next();
+})
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 

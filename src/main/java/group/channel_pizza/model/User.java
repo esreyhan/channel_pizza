@@ -22,7 +22,16 @@ public class User {
 	private String fullname;
 	private String email;
 	private String address;
+	private String admin;
 	
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
 	public User(String id, String username, String password, String fullname, String email, String address) {
 
 		this.id = id;

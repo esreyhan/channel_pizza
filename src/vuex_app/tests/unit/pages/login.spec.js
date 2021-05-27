@@ -53,8 +53,8 @@ describe('Actions', () => {
             await textUsername.setValue(username)
             await textPassword.setValue(password)
             await wrapper.find('#submit').trigger('click');
-            expect(wrapper.find('#username').element.value).toBe(username)
-            expect(wrapper.find('#password').element.value).toBe(password)
+            expect(wrapper.vm.form.username).toBe(username)
+            expect(wrapper.vm.form.password).toBe(password)
         })
         //redirect function is called upon successful login
         test('test with mocked redirect and signin', async () => {
