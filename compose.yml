@@ -1,4 +1,4 @@
---- 
+version: '3.7'
 services: 
   frontend: 
     build: ./src/vuex_app
@@ -13,10 +13,11 @@ services:
     volumes: 
       - "./init-mongo.js:/docker-entryponint-initdb.d/init-mongo.js:ro"
 #      - "./usr/local/var/mongodb"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=pizzauser
-      - MONGO_INITDB_ROOT_PASSWORD=12345
-      - MONGO_INITDB_DATABASE=ChannelPizza
+    #environment:
+     # - MONGO_INITDB_DATABASE=ChannelPizza
+      #- MONGO_INITDB_ROOT_USERNAME=admin
+      #- MONGO_INITDB_ROOT_PASSWORD=12345
+
   spring: 
     build: "."
     external_links: 

@@ -110,15 +110,20 @@ wrapper = mount(Register, {
 
     test('postcode search method is called', async () => {
         const mockmethod = jest.fn() 
+        const mockmethod2 = jest.fn()
+        wrapper.setMethods({postCodeCorrection:mockmethod2})
       wrapper.setMethods({postCodeSearch:mockmethod})
-       wrapper.find('#code').trigger('blur');
+       const input = wrapper.find('#postcode');
+       await input.vm.$emit('input');
+       expect(mockmethod2).toHaveBeenCalled();
+       await input.vm.$emit('hit')
        expect(mockmethod).toHaveBeenCalled();
        
     })
     
     test('postcode search method changes the respective variables', async () => {
-    
-        await wrapper.find('#code').trigger('blur');
+        const input = wrapper.find('#postcode');
+        await input.vm.$emit('hit');
         expect(wrapper.vm.postcodes).toHaveLength(1);
         expect(wrapper.vm.regionData).toHaveLength(1);
         expect(wrapper.vm.regionData[0]).toBe("cd");

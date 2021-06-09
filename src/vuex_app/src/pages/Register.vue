@@ -36,7 +36,8 @@
                     <div class="note"> Adress Information </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input id="code" autocomplete = "off" v-model="code" type="text" class="form-control" placeholder="Post Code *" @blur="postCodeSearch"/>
+                                <vue-bootstrap-typeahead id="postcode" placeholder="Post Code" v-model="code" :data='codeData' @hit="postCodeSearch" @input="postCodeCorrection"/>
+                               
                             </div>
                             <div class="form-group" style="margin:10% 25">
                                 <vue-bootstrap-typeahead id="country" placeholder="Country" v-model="country" :data='countryData'/>
@@ -96,7 +97,8 @@ export default  {
     data() {
 
         return {
-
+        
+        codeData:[],
         code: '',
         region:'',
         country:'',
@@ -130,10 +132,11 @@ export default  {
       },
     methods: {
     /**
-     * class parameters countryDta and regionData are set by the method, if the rest service call is successful.
+     * class parameters countryData and regionData are set by the method, if the rest service call is successful.
      * 
      */
     postCodeSearch: function() {
+        console.log("postCodeSearch" + this.code)
        
    const url = "https://api.postcodes.io/postcodes/" + this.code
   
@@ -143,12 +146,32 @@ export default  {
         
         this.postcodes[0] = response.data.result;
         
-        this.countryData.push(this.postcodes[0].country);
+       this.countryData.push(this.postcodes[0].country);
         this.regionData.push(this.postcodes[0].region)
       
       }).catch(error=>{
        console.log(error)
- })
+ });
+  /**
+     * Method for postcode autocomplete
+     * 
+     */
+      },
+      postCodeCorrection: function() {
+          console.log("postCodeCorrection" + this.code)
+          if (this.code) {
+          const url = "https://api.postcodes.io/postcodes/" + this.code + "/autocomplete"
+          axios
+      .get(url)
+      .then(response => {
+        
+        this.codeData = response.data.result;
+      
+      }).catch(error=>{
+       console.log(error)
+ });
+
+          }
       },
 
       ...mapActions({
@@ -218,7 +241,6 @@ export default  {
  * 
  */
        async submit(){ 
-          console.log("submit button")
             this.form.address = this.code + " " + this.country + " " + this.region + " " + this.adress_line
             this.form.fullname = this.firstname + " " + this.lastname
          await this.register(this.form).then(() => {
