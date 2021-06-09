@@ -36,7 +36,7 @@
                     <div class="note"> Adress Information </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <vue-bootstrap-typeahead id="postcode" placeholder="Post Code" v-model="code" :data='codeData' @hit="postCodeSearch" @input="postCodeCorrection"/>
+                                <vue-bootstrap-typeahead class = "postcode" id="postcode" placeholder="Post Code" v-model="code" :data='codeData' @hit="postCodeSearch" @input="postCodeCorrection"/>
                                
                             </div>
                             <div class="form-group" style="margin:10% 25">

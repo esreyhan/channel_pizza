@@ -62,7 +62,6 @@ export default {
             state.id = null,
             state.user = null
             state.admin = null
-            state.cart= []
         }
         
     },
