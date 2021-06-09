@@ -12,7 +12,11 @@ services:
       - "27017:27017"
     volumes: 
       - "./init-mongo.js:/docker-entryponint-initdb.d/init-mongo.js:ro"
-      - "./usr/local/var/mongodb"
+#      - "./usr/local/var/mongodb"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=pizzauser
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+      - MONGO_INITDB_DATABASE=ChannelPizza
   spring: 
     build: "."
     external_links: 
