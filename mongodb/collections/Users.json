@@ -15,5 +15,15 @@
   "fullname": "enis sinan reyhan",
   "address": "w21tt England London Westminister",
   "_class": "group.channel_pizza.model.User",
-  "passwor": "12345"
+  "password": "12345",
+  "admin": "admin"
+},{
+  "_id": {
+    "$oid": "60c11829287e6f00dec23ffc"
+  },
+  "username": "sinan2",
+  "password": "12345",
+  "fullname": "enis sinan reyhan",
+  "address": "w21tt England London -",
+  "_class": "group.channel_pizza.model.User"
 }]

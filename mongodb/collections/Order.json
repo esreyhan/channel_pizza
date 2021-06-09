@@ -1,145 +1,87 @@
 [{
   "_id": {
-    "$oid": "60abddd75c55584e0bcabcba"
+    "$oid": "60c11920287e6f00dec23ffe"
   },
   "orderitems": [
-    "fdffsfsfdkkj",
-    "sadffasd"
-  ],
-  "quantity": [
-    2,
-    4
-  ],
-  "total": 9,
-  "date": "22-05-2021 22:43:13",
-  "userid": "609ed4bc3b25f52e37b3ba84",
-  "_class": "channelpizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ac1690eb5a1c13741c3fa6"
-  },
-  "orderitems": [
+    "609c36332074d165f9c53be3",
     "609c36092074d165f9c53be0",
-    "609c36332074d165f9c53be3"
+    "60a028b0e5fee168965d2bfe",
+    "609c36422074d165f9c53be4"
   ],
   "quantity": [
     1,
+    1,
+    1,
     1
   ],
-  "total": 9.1,
-  "date": "25-05-2021 00:11:44",
-  "userid": "609ed4c03b25f52e37b3ba85",
-  "_class": "group.channelpizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ae435bc31e2673dd53e98a"
-  },
-  "orderitems": [
-    "609c36332074d165f9c53be3"
-  ],
-  "quantity": [
-    1
-  ],
-  "total": 4.3,
-  "date": "26-05-2021 15:47:23",
-  "userid": "60ae2abdc31e2673dd53e989",
+  "total": 17.9,
+  "date": "09-06-2021 19:40:16",
+  "userid": "60ae58f6c31e2673dd53e98b",
   "_class": "group.channel_pizza.model.Order"
 },{
   "_id": {
-    "$oid": "60ae5915c31e2673dd53e98c"
+    "$oid": "60c1192f287e6f00dec23fff"
+  },
+  "orderitems": [
+    "609c36332074d165f9c53be3",
+    "609c36092074d165f9c53be0",
+    "60a028b0e5fee168965d2bfe",
+    "609c36422074d165f9c53be4",
+    "609c364e2074d165f9c53be5",
+    "60a0299ae5fee168965d2c01"
+  ],
+  "quantity": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "total": 25.5,
+  "date": "09-06-2021 19:40:31",
+  "userid": "60ae58f6c31e2673dd53e98b",
+  "_class": "group.channel_pizza.model.Order"
+},{
+  "_id": {
+    "$oid": "60c1194a287e6f00dec24000"
+  },
+  "orderitems": [
+    "609c36332074d165f9c53be3",
+    "609c36092074d165f9c53be0",
+    "60a028b0e5fee168965d2bfe",
+    "609c36422074d165f9c53be4",
+    "609c364e2074d165f9c53be5",
+    "60a0299ae5fee168965d2c01"
+  ],
+  "quantity": [
+    3,
+    2,
+    1,
+    1,
+    2,
+    1
+  ],
+  "total": 35.9,
+  "date": "09-06-2021 19:40:58",
+  "userid": "60c11829287e6f00dec23ffc",
+  "_class": "group.channel_pizza.model.Order"
+},{
+  "_id": {
+    "$oid": "60c11965287e6f00dec24001"
   },
   "orderitems": [
     "609c36092074d165f9c53be0",
     "609c36332074d165f9c53be3",
-    "609c36232074d165f9c53be2"
+    "60a028b0e5fee168965d2bfe"
   ],
   "quantity": [
     1,
     1,
     1
   ],
-  "total": 13.2,
-  "date": "26-05-2021 17:20:05",
-  "userid": "60ae58f6c31e2673dd53e98b",
-  "_class": "group.channel_pizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ae66cb25e8ac150dbcb7b4"
-  },
-  "orderitems": [
-    "609c36232074d165f9c53be2",
-    "609c36092074d165f9c53be0"
-  ],
-  "quantity": [
-    1,
-    9
-  ],
-  "total": 47.3,
-  "date": "26-05-2021 18:18:35",
-  "userid": "60ae66b325e8ac150dbcb7b3",
-  "_class": "group.channel_pizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ae671325e8ac150dbcb7b5"
-  },
-  "orderitems": [
-    "609c36092074d165f9c53be0",
-    "609c36332074d165f9c53be3"
-  ],
-  "quantity": [
-    2,
-    1
-  ],
-  "total": 13.9,
-  "date": "26-05-2021 18:19:47",
-  "userid": "60ae58f6c31e2673dd53e98b",
-  "_class": "group.channel_pizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ae715693c3be17eb2da7f8"
-  },
-  "orderitems": [
-    "fdffsfsfdkkj",
-    "sadffasd"
-  ],
-  "quantity": [
-    2,
-    4
-  ],
-  "total": 9,
-  "date": "22-05-2021 22:43:13",
-  "userid": "609ed4bc3b25f52e37b3ba84",
-  "_class": "group.channel_pizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60ae7df3b5bbbf34ff1e48f1"
-  },
-  "orderitems": [
-    "fdffsfsfdkkj",
-    "sadffasd"
-  ],
-  "quantity": [
-    2,
-    4
-  ],
-  "total": 9,
-  "date": "22-05-2021 22:43:13",
-  "userid": "609ed4bc3b25f52e37b3ba84",
-  "_class": "group.channel_pizza.model.Order"
-},{
-  "_id": {
-    "$oid": "60aeb2387d76882dd0635496"
-  },
-  "orderitems": [
-    "fdffsfsfdkkj",
-    "sadffasd"
-  ],
-  "quantity": [
-    2,
-    4
-  ],
-  "total": 9,
-  "date": "22-05-2021 22:43:13",
-  "userid": "609ed4bc3b25f52e37b3ba84",
+  "total": 13.4,
+  "date": "09-06-2021 19:41:25",
+  "userid": "60c11829287e6f00dec23ffc",
   "_class": "group.channel_pizza.model.Order"
 }]
