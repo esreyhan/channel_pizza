@@ -1,20 +1,6 @@
-use admin
+db.auth('admin', '12345')
 
-db.createUser(
-
- {
-
- user: 'admin',
-
- pwd: '12345',
-
- roles: [{ role: 'userAdminAnyDatabase', db: 'admin' }, 'readWriteAnyDatabase']
-
- }
-
-)
-
-use ChannelPizza
+db = db.getSiblingDB('ChannelPizza')
 
 db.createUser(
 {user : "pizzauser",

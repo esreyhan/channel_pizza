@@ -12,7 +12,7 @@ Backend dockerfile: /Dockerfile
 
 Mongodb's latest version has been downloaded and run directly. 
 
-Mongodb has been configured as to adopt the following properties in line with the 
+Spring boot has been configured as to adopt the following properties in line with the 
 spring boot: 
 
 spring.data.mongodb.database = ChannelPizza

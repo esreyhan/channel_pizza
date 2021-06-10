@@ -6,17 +6,22 @@ services:
       - spring
     ports: 
       - "3000:3000"
+  
+
+
   mongo: 
     image: mongo
     ports: 
       - "27017:27017"
     volumes: 
       - "./init-mongo.js:/docker-entryponint-initdb.d/init-mongo.js:ro"
-#      - "./usr/local/var/mongodb"
+      - "c:/data/db:/data/db"
     #environment:
-     # - MONGO_INITDB_DATABASE=ChannelPizza
-      #- MONGO_INITDB_ROOT_USERNAME=admin
-      #- MONGO_INITDB_ROOT_PASSWORD=12345
+    #  - MONGO_INITDB_DATABASE= ChannelPizza
+    #  - MONGO_INITDB_ROOT_USERNAME= admin
+    #  - MONGO_INITDB_ROOT_PASSWORD= 12345
+
+    restart: always
 
   spring: 
     build: "."
